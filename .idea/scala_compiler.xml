@@ -4,13 +4,19 @@
     <profile name="Maven 1" modules="structuredStreaming">
       <parameters>
         <parameter value="-dependencyfile" />
-        <parameter value="D:\IdeaProjects\demo\structuredStreaming\target/.scala_dependencies" />
+        <parameter value="D:\IdeaProjects\sparkStudy\structuredStreaming\target/.scala_dependencies" />
       </parameters>
     </profile>
     <profile name="Maven 2" modules="sparkTest">
       <parameters>
         <parameter value="-dependencyfile" />
         <parameter value="D:\IdeaProjects\demo\sparkTest\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 3" modules="DF_Operate">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\DF_Operate\target/.scala_dependencies" />
       </parameters>
     </profile>
   </component>
