@@ -19,5 +19,11 @@
         <parameter value="D:\IdeaProjects\sparkStudy\DF_Operate\target/.scala_dependencies" />
       </parameters>
     </profile>
+    <profile name="Maven 4" modules="spark24_newFeature">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\spark2.4_newFeature\target/.scala_dependencies" />
+      </parameters>
+    </profile>
   </component>
 </project>

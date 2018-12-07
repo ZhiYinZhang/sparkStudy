@@ -13,22 +13,19 @@ object demo1 {
       .getOrCreate()
     val sc = spark.sparkContext
     import spark.implicits._
-    val strlen = udf(strLen _)
+
     sc.setLogLevel("WARN")
-    val df = spark.read
-      .format("csv")
-      .option("inferSchema",true)
-      .option("header",true)
-      .load("e://pythonProject//dataset//model01_train.csv")
-    df.select(slice($"cnt",0,10)).show()
 
-
-  }
-  def strLen(num:Int):Boolean= {
-    if (num > 10){
-      return true
-  }
-    return false
+    val df1 = spark.createDataFrame(Seq(
+      Array(1,2,4,4),
+      Array(5,9,7,8),
+      Array(8,9,6,11)
+    ).map(Tuple1.apply(_))
+    ) .toDF("test")
+    df1.select(array_sort(col("test"))).show()
+    
+    df1.printSchema()
+    df1.show()
   }
 
 }
