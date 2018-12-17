@@ -1,10 +1,7 @@
 package barrierScheduling
-import org.apache.spark.sql._
-import org.apache.spark.BarrierTaskContext
-import org.apache.spark.rdd.{RDD, RDDBarrier}
-import org.apache.spark.sql.expressions.Window
-import org.apache.spark.sql.{Row, SparkSession}
-
+import org.apache.spark.sql.expressions.{Window, WindowSpec}
+import org.apache.spark.sql.{Column, DataFrame, SparkSession}
+import org.apache.spark.sql.functions._
 object barrierDemo1 {
     def main(args:Array[String]):Unit={
       val spark: SparkSession = SparkSession.builder()
@@ -14,35 +11,32 @@ object barrierDemo1 {
       spark.sparkContext.setLogLevel("WARN")
       import spark.implicits._
 
-      val df = spark.read
+
+      val filePath="D:\\PycharmProjects\\DPT\\files\\dataset\\model01_train.csv"
+      val df1: DataFrame = spark.read
         .format("csv")
-        .option("header",true)
-        .option("inferSchema",true)
-        .load("E:\\pythonProject\\dataset\\model01_train.txt")
-      df.show(10)
+        .option("header", true)
+        .option("inferSchema", true)
+        .load(filePath)
 
-//      val a = df.rdd
-//      val a1: RDD[Row] = a.repartition(3)
-//      println(a1.partitions.length)
-//      val ba: RDDBarrier[Row] = a1.barrier()
-//      val result: RDD[Row] = ba.mapPartitions { iter =>
-//        println("start barrier")
-//        val context = BarrierTaskContext.get()
-//        if (context.partitionId() == 0) {
-//             println(context.attemptNumber())
-//             println(context.getTaskInfos())
-//             println(context.stageId())
-//             println(context.taskAttemptId())
-//             println(context.taskMetrics())
-//        }
-//        context.barrier()
-//        iter
-//      }
-//      result.collect()
-//
+      df1.printSchema()
+//      val col1: Column = df1("mnth")
+      val arr = Array("col1","col2","col3","col4")
+      df1.select(
+        when($"instant"<1000,0)
+          .when($"instant"<2000,1)
+          .when($"instant"<3000,2)
+          .otherwise(3).as("when")
+      ).groupBy("when").count().show()
 
 
 
+      val win: WindowSpec = Window.partitionBy("mnth")
+        .orderBy($"mnth".asc)
+        .rowsBetween(Window.unboundedPreceding,Window.unboundedFollowing)
+      df1.select($"mnth",sum("instant").over(win)).show()
 
+
+      df1.select($"instant".between(1,100)).show()
     }
 }
