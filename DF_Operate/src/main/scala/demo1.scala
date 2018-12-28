@@ -1,7 +1,8 @@
-import java.util.Date
+
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
-
+import org.apache.spark.sql.expressions.{Window, WindowSpec}
+import scala.collection.mutable.ListBuffer
 object demo1 {
   def main(args: Array[String]): Unit = {
     val spark: SparkSession = SparkSession.builder()
@@ -13,19 +14,32 @@ object demo1 {
       .getOrCreate()
     val sc = spark.sparkContext
     import spark.implicits._
-
     sc.setLogLevel("WARN")
 
-    val df1 = spark.createDataFrame(Seq(
-      Array(1,2,4,4),
-      Array(5,9,7,8),
-      Array(8,9,6,11)
-    ).map(Tuple1.apply(_))
-    ) .toDF("test")
-    df1.select(array_sort(col("test"))).show()
-    
-    df1.printSchema()
-    df1.show()
+    val train_df = spark.read
+      .format("csv")
+      .option("header",true)
+      .option("inferSchema",true)
+      .option("path","E:\\test\\dawnbench\\train_results.csv")
+      .load()
+    val valid_df = spark.read
+      .format("csv")
+      .option("header",true)
+      .option("inferSchema",true)
+      .option("path","E:\\test\\dawnbench\\valid_results.csv")
+      .load()
+    train_df.printSchema()
+
+
+
+// accuracy:87.07
+
+
+
+
+
+
+
   }
 
 }
