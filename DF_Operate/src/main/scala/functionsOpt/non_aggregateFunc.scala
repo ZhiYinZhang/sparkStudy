@@ -34,7 +34,7 @@ object non_aggregateFunc {
 
 //    df1.select($"*",array("f")).show()
 
-    // bitwiseNOT()取反
+    // bitwiseNOT()按位取反
 //    df1.select($"*",bitwiseNOT($"f")).show()
 
     //expr()表达式类似selectExpr()   类似sql：select sum(f) from df1.
@@ -54,11 +54,17 @@ object non_aggregateFunc {
 //      ,randn(10)
 //    ).show()
 
-
-
-     print(spark.sparkContext.defaultParallelism)
-     df.select(spark_partition_id().as("part")).distinct().show()
+//     print(spark.sparkContext.defaultParallelism)
+//     df.select(spark_partition_id().as("part")).distinct().show()
      //monotonically_increasing_id()单调递增唯一 不连续
-     df.select(monotonically_increasing_id().as("index")).select(max("index"),count("index")).show()
+//     df.select(monotonically_increasing_id().as("index")).select(max("index"),count("index")).show()
+       //将第一列作为key，第二列作为value
+//    df1.select(map($"e",$"f")).show()
+
+
+//    df1.sort(asc("f")).show()
+//    df1.sort(asc_nulls_first("f")).show()
+//    df1.sort(asc_nulls_last("f")).show()
+
   }
 }
