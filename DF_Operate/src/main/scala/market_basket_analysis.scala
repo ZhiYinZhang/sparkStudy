@@ -63,6 +63,8 @@ object market_basket_analysis {
     val space_sql = "select d.department, count(distinct p.product_id) as products\n  from products p\n    inner join departments d\n      on d.department_id = p.department_id\n group by d.department\n order by products desc\n limit 10"
 //    spark.sql(space_sql).show()
 
+
+    //---------------------------------------------------Train ML Model-------------------------------------------------
     //Organize and view Shopping Basket
     //Organize the data by shopping basket
     val rawData = spark.sql("select p.product_name, o.order_id from products p inner join order_products_train o where o.product_id = p.product_id")
@@ -70,9 +72,6 @@ object market_basket_analysis {
     baskets.createOrReplaceTempView("baskets")
 
 
-
-
-    //---------------------------------------------------Train ML Model-------------------------------------------------
     // use FP-growth
     // Extract out the items
     val baskets_ds = spark.sql("select items from baskets").as[Array[String]].toDF("items")
