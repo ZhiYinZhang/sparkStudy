@@ -1,5 +1,4 @@
 package barrierScheduling
-
 import org.apache.spark.sql.expressions.{Window, WindowSpec}
 import org.apache.spark.sql.{Column, DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
@@ -11,6 +10,7 @@ object barrierDemo1 {
         .getOrCreate()
       spark.sparkContext.setLogLevel("WARN")
       import spark.implicits._
+
 
       val filePath="D:\\PycharmProjects\\DPT\\files\\dataset\\model01_train.csv"
       val df1: DataFrame = spark.read
