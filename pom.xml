@@ -12,6 +12,7 @@
         <module>structuredStreaming</module>
         <module>DF_Operate</module>
         <module>spark2.4_newFeature</module>
+        <module>sparkML_Opt</module>
     </modules>
 
 
