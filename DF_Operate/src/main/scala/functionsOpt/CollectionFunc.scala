@@ -37,7 +37,7 @@ object CollectionFunc {
 //    df1.select(posexplode($"b")).show()
 
     //每行是从d开始到e结束的数组，step默认为1
-    df1.select(sequence($"d",$"e",$"f")).show(truncate = false)
+//    df1.select(sequence($"d",$"e",$"f")).show(truncate = false)
 
 
   }

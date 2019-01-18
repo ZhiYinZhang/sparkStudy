@@ -7,7 +7,6 @@ object hiveOpt {
     val spark = SparkSession.builder()
       .appName("hive")
       .master("local[2]")
-     // .config("spark.files","/opt/cloudera/parcels/CDH-5.13.3-1.cdh5.13.3.p0.2/lib/hive/conf/hive-site.xml")
       .enableHiveSupport()
       .getOrCreate()
 
@@ -15,6 +14,8 @@ object hiveOpt {
     sc.setLogLevel("WARN")
     import spark.implicits._
     import spark.sql
-    sql("show databases").show()
+    sql("show tables").show()
+//    sql("show databases").show()
+    sql("select * from hivefromhbase").show()
   }
 }

@@ -13,6 +13,8 @@
         <module>DF_Operate</module>
         <module>spark2.4_newFeature</module>
         <module>sparkML_Opt</module>
+        <module>hbase_Opt</module>
+        <module>hbase_opt</module>
     </modules>
 
 
