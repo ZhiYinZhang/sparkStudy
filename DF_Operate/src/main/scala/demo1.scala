@@ -16,19 +16,16 @@ object demo1 {
     import spark.implicits._
     sc.setLogLevel("WARN")
 
-    val df1: DataFrame = spark.range(0,10000000).toDF("col1")
+    case class SimpleData(name:String,value:Double)
 
-    val start = System.currentTimeMillis()
+//    val dataDF = spark.createDataFrame(Seq(
+//      SimpleData("a",2.0),
+//      SimpleData("b",3.0)
+//    )).toDF()
 
-    val df2: DataFrame = df1.withColumn("partitionId",spark_partition_id())
-    df2.groupBy("partitionId").count().show()
-
-    val end = System.currentTimeMillis()
-
-    print(end-start)
-
-
-    
+//    val doubles: Array[Double] = dataDF.stat.approxQuantile("value",Array(0,0.25,0.5,0.75,1),0.01)
+//
+//    val tuple: (Array[Double], Array[Long]) = dataDF.select("value").map{_.getAs[Double](0)}.rdd.histogram(6)
 
 
 

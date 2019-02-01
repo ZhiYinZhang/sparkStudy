@@ -31,6 +31,10 @@ object create_DataFrame {
          df1.show(false)
 
 
+         var tuples: List[(Int, String, String, String, String, String)] =List[(Int, String, String, String, String, String)]()
+         tuples = tuples.+:((0, "I", "saw", "the", "red", "balloon")).+:((1, "Mary", "had", "a", "little", "lamb"))
+         val test = spark.createDataFrame(tuples).toDF("id","msg","1","2","3","4")
+         test.show(false)
        }
   case class Persion(name:String,age:Int)
 }

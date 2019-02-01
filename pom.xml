@@ -15,6 +15,7 @@
         <module>sparkML_Opt</module>
         <module>hbase_Opt</module>
         <module>hbase_opt</module>
+        <module>DStream</module>
     </modules>
 
 
