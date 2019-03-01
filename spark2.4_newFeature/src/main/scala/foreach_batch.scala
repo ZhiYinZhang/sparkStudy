@@ -28,10 +28,8 @@ object foreach_batch {
                  batchDF.persist()
                  batchDF.write.format("csv").mode("append").option("header",true).save("e://test//first1")
                  batchDF.write.format("json").mode("append").save("e://test//first2")
-
                  batchDF.unpersist()
                }
-
              }
 //           .format("console")
            .option("truncate",false)

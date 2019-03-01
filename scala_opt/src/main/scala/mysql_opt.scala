@@ -1,11 +1,6 @@
-package com.entrobus
-
-import java.sql.{Connection, PreparedStatement, ResultSet}
+import java.sql.{Connection, PreparedStatement}
 
 import com.mchange.v2.c3p0.ComboPooledDataSource
-import org.apache.spark.sql.execution.streaming.Offset
-import org.json4s.{Formats, NoTypeHints}
-import org.json4s.jackson.Serialization
 
 object mysql_opt {
   def main(args: Array[String]): Unit = {

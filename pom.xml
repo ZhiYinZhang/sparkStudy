@@ -16,6 +16,7 @@
         <module>hbase_Opt</module>
         <module>hbase_opt</module>
         <module>DStream</module>
+        <module>scala_opt</module>
     </modules>
 
 

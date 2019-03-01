@@ -35,7 +35,22 @@ class customRecriver(host:String,port:Int) extends Receiver[String](StorageLevel
       //连接socket
       socket = new Socket(host,port)
 
-      new BufferedReader(new InputStreamReader(socket.getInputStream(),StandardCharsets.UTF_8))
+      val reader = new BufferedReader(new InputStreamReader(socket.getInputStream(),StandardCharsets.UTF_8))
+
+      userInput= reader.readLine()
+      while(!isStopped()&& userInput!=null){
+        store(userInput)
+        userInput= reader.readLine()
+      }
+      reader.close()
+      socket.close()
+
+      restart("Trying to connect again")
+    }catch{
+      case e:java.net.ConnectException=>
+        restart("Error connectiong to "+host+":"+port,e)
+      case t:Throwable=>
+        restart("Error recriving data",t)
     }
   }
 }

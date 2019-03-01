@@ -1,8 +1,11 @@
 
+import org.apache.spark.api.java.JavaRDD
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
+import org.apache.spark.sql._
 import org.apache.spark.sql.expressions.{Window, WindowSpec}
+
 import scala.collection.mutable.ListBuffer
+case class SimpleData(name:String,value:Double)
 object demo1 {
   def main(args: Array[String]): Unit = {
     val spark: SparkSession = SparkSession.builder()
@@ -16,12 +19,15 @@ object demo1 {
     import spark.implicits._
     sc.setLogLevel("WARN")
 
-    case class SimpleData(name:String,value:Double)
 
-//    val dataDF = spark.createDataFrame(Seq(
-//      SimpleData("a",2.0),
-//      SimpleData("b",3.0)
-//    )).toDF()
+
+    val dataDF = spark.createDataFrame(Seq(
+      new SimpleData("a",2.0),
+      new SimpleData("b",1.0),
+      new SimpleData("a",1.0)
+    )).toDF("userId","rating")
+    dataDF.dropDuplicates("userId").show()
+    dataDF.distinct().show()
 
 //    val doubles: Array[Double] = dataDF.stat.approxQuantile("value",Array(0,0.25,0.5,0.75,1),0.01)
 //

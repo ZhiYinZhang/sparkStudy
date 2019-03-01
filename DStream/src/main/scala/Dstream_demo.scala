@@ -14,7 +14,6 @@ object Dstream_demo {
   // val ds1: DStream[String] = ds.flatMap(_.split(","))
 
 
-
     ds.print(10)
     ssc.start()
     ssc.awaitTermination()
