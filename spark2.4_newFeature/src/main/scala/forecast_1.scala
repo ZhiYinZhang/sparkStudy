@@ -10,13 +10,12 @@ object forecast_1 {
   def main(args: Array[String]): Unit = {
     val spark=SparkSession.builder()
       .appName("forecast_sales_custid")
-      .master("local[1]")
+      .master("local[10]")
       .config("spark.memory.faction",0.8)
       .getOrCreate()
     import spark.implicits._
     val sc: SparkContext = spark.sparkContext
-    sc.setLogLevel("WARN")
-
+//    sc.setLogLevel("WARN")
     val filePath="E:\\test\\csv\\forecast.csv"
 
     var df= spark.read
@@ -31,10 +30,10 @@ object forecast_1 {
 
     val train_df=num_preprocess(df)
 
+//    train_df.dropDuplicates("cust_id").show()
     val rollings_qty_sum=get_lag_rolling_feature(train_df,"qty_sum",List(5,10),List(5,10))
-//    rollings_qty_sum.write.option("header",true).csv("e://test/csv/result1")
-    getJVM()
-    println(rollings_qty_sum.count())
+    rollings_qty_sum.write.option("header",true).csv("e://test/csv/result1")
+//    println(rollings_qty_sum.count())
 //    val features=(for{x<-rollings_qty_sum.columns if x.startsWith("qty_sum_lag")}yield x).toArray
 //    val forecast_qty_sum = new forecast_per_cust_id_model(rollings_qty_sum,features,"qty_sum",new LinearRegression())
 //
@@ -43,18 +42,12 @@ object forecast_1 {
 //    pred.write.csv("E:\\test\\csv\\result1")
   }
 
-  def getJVM(): Unit ={
-    val runtime: Runtime = Runtime.getRuntime
-    println("max:"+runtime.maxMemory()/1024/1024)
-    println("total:"+runtime.totalMemory()/1024/1024)
-    println("free:"+runtime.freeMemory()/1024/1024)
-  }
   def num_preprocess(df:DataFrame):DataFrame={
       var df1=df.groupBy("cust_id","born_date")
                  .agg(("qty_sum","sum"),("amt_sum","sum"))
       df1=df1.withColumn("born_date",to_date(df1("born_date"),"yyyyMMdd"))
              .withColumnRenamed("sum(qty_sum)","qty_sum")
-             .withColumnRenamed("sum(amt_sum","amt_sum")
+             .withColumnRenamed("sum(amt_sum)","amt_sum")
       df1=df1.orderBy("cust_id","born_date")
       df1
   }
@@ -74,7 +67,7 @@ object forecast_1 {
         var window_s=windows.sorted
         var lag_s=lags.sorted
         var i=0
-    var loop1=0
+        var loop1=0
         var rollings:DataFrame=null
         for(l<-lag_s){
             println("l:"+l)
@@ -88,7 +81,7 @@ object forecast_1 {
                 for(win <- Range(j,window+1)){
                     println("loop1:"+loop1)
                     loop1+=1
-                    System.gc()
+
                     var lag=temp.alias("lag")
                     lag = lag.withColumn("born_date", date_sub(lag("born_date"),win)).select("cust_id","born_date")
                     lag = lag.join(temp.select("cust_id","born_date",col),List("cust_id","born_date"),"left")

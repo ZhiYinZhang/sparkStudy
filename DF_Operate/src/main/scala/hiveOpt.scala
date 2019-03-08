@@ -1,5 +1,4 @@
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.catalyst.parser.SqlBaseParser.CreateHiveTableContext
 
 object hiveOpt {
   def main(args: Array[String]): Unit = {
@@ -15,7 +14,8 @@ object hiveOpt {
     import spark.implicits._
     import spark.sql
     sql("show tables").show()
-//    sql("show databases").show()
-    sql("select * from hivefromhbase").show()
+    sql("show databases").show()
+//    sql("select * from hivefromhbase").show()
+
   }
 }
