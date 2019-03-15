@@ -1,17 +1,12 @@
-import java.io.FileInputStream
-import java.util.Properties
 
-import cern.jet.random
-import cern.jet.random.Beta
-import java.lang.Math._
+import org.json4s._
+import org.json4s.jackson.JsonMethods._
+
+import scala.util.Random
 object opt_demo {
   def main(args: Array[String]): Unit = {
-    asin(1.3349673346607345)
 
 
-  }
-  def multi_param(param:String*)={
-      println(param)
 
   }
 }
