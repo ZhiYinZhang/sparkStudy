@@ -76,6 +76,37 @@ object io_opt {
 //    }
 
     br.close()
+  }
+  def readFile2()={
+    val base="e://dataset//question//question2//"
+    val file = base+"words.txt"
+    val hash_file = base+"hash"
 
+    val br = new BufferedReader(new FileReader(file))
+    var bw:BufferedWriter = null
+    //定义缓冲区大小
+    var records=new Array[Char](18*1000)
+    var strs:Array[String]=null
+    //每次读取的字符长度
+    var len:Int=0
+    while(len != -1){
+      //返回值为每次读取的字符长度
+      len=br.read(records)
+      strs=new String(records.slice(0,len)).split("\n")
+      var num=0
+      for(i<-strs) {
+        var hashId:Int=i.hashCode%5000
+        hashId=hashId.abs
+        bw=new BufferedWriter(new FileWriter(base+s"test//$hashId.txt",true))
+
+        bw.write(i+"\n")
+        bw.flush()
+        println(s"$num/${len/18}" + "   " + i)
+        num += 1
+      }
+      println("----------------------------------")
+    }
+    br.close()
+    bw.close()
   }
 }

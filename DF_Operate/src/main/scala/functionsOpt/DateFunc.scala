@@ -50,7 +50,7 @@ object DateFunc {
     //将时间戳转换成seconds ，不传参用系统时间
 //     df.select(unix_timestamp(col("timestamp"))).show(truncate = false)
 
-    df.groupBy(window($"timestamp","10 minute","5 minute")).mean("top5_correct").show(truncate = false)
+//    df.groupBy(window($"timestamp","10 minute","5 minute")).mean("top5_correct").show(truncate = false)
 
 
 
