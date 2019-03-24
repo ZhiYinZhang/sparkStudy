@@ -3,7 +3,6 @@ import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.feature._
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
 import org.apache.spark.sql.functions._
-import ml.dmlc.xgboost4j.scala.spark.{XGBoost, XGBoostEstimator}
 object loan_risk {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder()
@@ -104,25 +103,25 @@ object loan_risk {
 
     // Create XGBoostEstimator
 
-    val xgBoostEstimator = new XGBoostEstimator(
-      Map[String, Any](
-        "num_round" -> 5,
-        "objective" -> "binary:logistic",
-        "nworkers" -> 16,
-        "nthreads" -> 4
-      )
-    ) .setFeaturesCol("scaledFeatures")
-      .setLabelCol("label")
-
-    // Create XGBoost Pipeline
-    val xgBoostPipeline = new Pipeline().setStages(pipelineAry ++ Array(xgBoostEstimator))
-
-    // Create XGBoost Model based on the training dataset
-    val xgBoostModel = xgBoostPipeline.fit(dataset_train)
-
-    val predictions: DataFrame = xgBoostModel.transform(dataset_valid)
-
-    predictions.printSchema()
-    predictions.show()
+//    val xgBoostEstimator = new XGBoostEstimator(
+//      Map[String, Any](
+//        "num_round" -> 5,
+//        "objective" -> "binary:logistic",
+//        "nworkers" -> 16,
+//        "nthreads" -> 4
+//      )
+//    ) .setFeaturesCol("scaledFeatures")
+//      .setLabelCol("label")
+//
+//    // Create XGBoost Pipeline
+//    val xgBoostPipeline = new Pipeline().setStages(pipelineAry ++ Array(xgBoostEstimator))
+//
+//    // Create XGBoost Model based on the training dataset
+//    val xgBoostModel = xgBoostPipeline.fit(dataset_train)
+//
+//    val predictions: DataFrame = xgBoostModel.transform(dataset_valid)
+//
+//    predictions.printSchema()
+//    predictions.show()
   }
 }
