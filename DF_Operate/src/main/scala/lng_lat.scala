@@ -14,7 +14,10 @@ object lng_lat {
     import spark.implicits._
     //        sc.setLogLevel("WARN")
 
-    val df = spark.read.option("header",true).option("inferSchema",true).csv("E:\\test\\city_map\\example2018-12-05-12-02-23去重结果.csv")
+    val df = spark.read
+      .option("header",true)
+      .option("inferSchema",true)
+      .csv("E:\\test\\city_map\\example2018-12-05-12-02-23去重结果.csv")
 
     val  df_id=df.withColumn("cust_id",monotonically_increasing_id())
 
@@ -22,7 +25,6 @@ object lng_lat {
     var array: Array[Dataset[Row]] = df_id.randomSplit(Array(0.5,0.5))
     var df0=array(0)
     var df1: Dataset[Row] = array(1)
-
     for(c <- df1.columns)
       df1=df1.withColumnRenamed(c,c+"1")
 

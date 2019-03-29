@@ -7,53 +7,65 @@
         <groupId>com.entrobus</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <properties>
+        <scala_version>2.11.8</scala_version>
+        <spark_version>2.3.0</spark_version>
+        <hbase_version>1.2.0</hbase_version>
+    </properties>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hbase_opt</artifactId>
+
     <dependencies>
     <dependency>
         <groupId>org.scala-lang</groupId>
         <artifactId>scala-library</artifactId>
-        <version>2.11.8</version>
+        <version>${scala_version}</version>
     </dependency>
     <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-core_2.11</artifactId>
-        <version>2.2.0</version>
+        <version>${spark_version}</version>
     </dependency>
     <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-sql_2.11</artifactId>
-        <version>2.2.0</version>
+        <version>${spark_version}</version>
     </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-spark -->
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-spark</artifactId>
-            <version>1.2.0-cdh5.13.3</version>
-        </dependency>
-
-
         <!--<dependency>-->
             <!--<groupId>org.apache.hbase</groupId>-->
-            <!--<artifactId>hbase</artifactId>-->
-            <!--<version>1.2.0</version>-->
+            <!--<artifactId>hbase-spark</artifactId>-->
+            <!--<version>1.2.0-cdh5.13.3</version>-->
         <!--</dependency>-->
+
+
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase</artifactId>
+            <version>${hbase_version}</version>
+            <type>pom</type>
+        </dependency>
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
+            <version>${hbase_version}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.hbase</groupId>-->
+<!--            <artifactId>hbase-common</artifactId>-->
+<!--            <version>${hbase_version}</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>${hbase_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-protocol</artifactId>
             <version>1.2.0</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.apache.hbase</groupId>-->
-            <!--<artifactId>hbase-common</artifactId>-->
-            <!--<version>1.2.0</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.hbase</groupId>-->
-            <!--<artifactId>hbase-server</artifactId>-->
-            <!--<version>1.2.0</version>-->
-        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-core -->
         <!--<dependency>-->
