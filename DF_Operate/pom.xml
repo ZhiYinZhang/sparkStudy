@@ -18,11 +18,11 @@
             <version>0.72</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/ml.dmlc/xgboost4j-spark -->
-        <dependency>
-            <groupId>ml.dmlc</groupId>
-            <artifactId>xgboost4j-spark</artifactId>
-            <version>0.7</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>ml.dmlc</groupId>-->
+            <!--<artifactId>xgboost4j-spark</artifactId>-->
+            <!--<version>0.7</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
