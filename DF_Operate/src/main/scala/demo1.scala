@@ -37,8 +37,6 @@ object demo1 {
     df.show(false)
     df.map{case Row(item_id:Int,cust_id:Int,qty_ord:Int,born_date:Int)=>(item_id)}
 
-
-
     //      val data_dir=param("data_dir").toString
     //      val userCol=param("userCol").toString
     //      val itemCol=param("itemCol").toString
