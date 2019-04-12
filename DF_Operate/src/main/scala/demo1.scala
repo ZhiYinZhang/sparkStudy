@@ -32,10 +32,15 @@ object demo1 {
         .option("header",true)
       .option("inferSchema",true)
       .csv(path)
+    val bd = sc.broadcast(df)
+    df=bd.value
 
-     df.printSchema()
-    df.show(false)
-    df.map{case Row(item_id:Int,cust_id:Int,qty_ord:Int,born_date:Int)=>(item_id)}
+     df.show(false)
+
+    df.groupBy("cust_id").agg(sum("qty_ord").alias("qty_ord")).show()
+
+    Thread.sleep(1000*60*5)
+
 
     //      val data_dir=param("data_dir").toString
     //      val userCol=param("userCol").toString
