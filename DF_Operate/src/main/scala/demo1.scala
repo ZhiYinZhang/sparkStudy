@@ -42,40 +42,5 @@ object demo1 {
     Thread.sleep(1000*60*5)
 
 
-    //      val data_dir=param("data_dir").toString
-    //      val userCol=param("userCol").toString
-    //      val itemCol=param("itemCol").toString
-    //      val ratingCol=param("ratingCol").toString
-    //      val top=param.getOrElse("top",10).toString.toInt
-
-
-
-//    df=df.withColumn("born_date",to_date($"born_date".cast("string"),"yyyyMMdd"))
-//    .withColumn("current_date",date_sub(current_date(),78))
-//    .withColumn("date_diff",datediff(col("current_date"),col("born_date")))
-
-//    val day_7=df.where(df("date_diff")<7).groupBy("item_id","cust_id").agg(sum("qty_ord").alias("qty_ord")).withColumn("lately",lit(7))
-    ////    val day_30=df.where(df("date_diff")<30).groupBy("item_id","cust_id").agg(sum("qty_ord").alias("qty_ord")).withColumn("lately",lit(30))
-    ////    val day_180=df.where(df("date_diff")<180).groupBy("item_id","cust_id").agg(sum("qty_ord").alias("qty_ord")).withColumn("lately",lit(180))
-    ////
-    ////    var df1:DataFrame=day_7.unionByName(day_30).unionByName(day_180)
-    ////
-    ////    df1=df1.orderBy("item_id","cust_id","lately")
-
-
-//    val df0=df.groupBy("item_id","cust_id").count().orderBy("item_id","cust_id")
-//    df0.show()
-//    df0.explain()
-
-
-//    Thread.sleep(1000*60*10)
-
-
-    //    df0.selectExpr(List("item_id","cust_id"):_*).show()
-
-//    df.select(countDistinct("item_id","cust_id")).show()
-//    df.select(countDistinct("item_id"),countDistinct("cust_id")).show()
-
-
   }
 }

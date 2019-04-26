@@ -21,7 +21,6 @@ object read_hbase {
     //    conf.set("hbase.regionserver.kerberos.principal", "hbase/_HOST@HADOOP.COM")
     //    conf.set("hbase.master.kerberos.principal", "hbase/entrobus12@HADOOP.COM")
 
-
     UserGroupInformation.setConfiguration(conf)
     try {
       val gui = UserGroupInformation.loginUserFromKeytabAndReturnUGI("zhangzy@HADOOP.COM", user_krbtab)

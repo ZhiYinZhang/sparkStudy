@@ -25,7 +25,7 @@ object write_hbase {
     val ugi=UserGroupInformation.loginUserFromKeytabAndReturnUGI("zhangzy@HADOOP.COM",user_keytab)
     UserGroupInformation.setLoginUser(ugi)
 
-    val table = new HTable(conf,"test_ma")
+    val table = new HTable(conf,"test_ljs")
 
     println(new Date())
     var put:Put = null

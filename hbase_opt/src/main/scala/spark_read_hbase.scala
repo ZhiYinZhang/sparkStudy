@@ -76,6 +76,7 @@ def get_conf_and_login():Configuration={
   // 文件在resources目录下，但是需要在编译后添加到target/classes目录下
   val krb5_conf=this.getClass.getResource("krb5.conf").getPath
   val user_keytab=this.getClass.getResource("zhangzy.keytab").getPath
+//  this.getClass.getResource("zhangzy.keytab")
   System.setProperty("java.security.krb5.conf", krb5_conf)
 
   val conf: Configuration = HBaseConfiguration.create()
@@ -91,6 +92,7 @@ def get_conf_and_login():Configuration={
   //    conf.set(TableInputFormat.SCAN_ROW_STOP,"row-9")
   //获取  列族 colfam1  列 col-1的值
   conf.set(TableInputFormat.SCAN_COLUMNS,"colfam1:col-1")
+
 
   try{
     //设置登录的用户
