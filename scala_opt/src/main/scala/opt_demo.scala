@@ -1,11 +1,16 @@
 
+import org.joda.time.DateTime
+
 import scala.collection.mutable.Map
 object opt_demo {
   def main(args: Array[String]): Unit = {
-    val x=1.1
-    val y=2
-    val rt=divider(x,y)
-    println(rt)
+    val dt = new DateTime()
+    println(dt.toString())
+    println(dt.toString("yyyy-MM-dd HH:mm:ss.SSS"))
+    val dt0=dt.plusDays(10)
+    println(dt0)
+
+
   }
   val divider=(x:Double,y:Double)=>{
     var result: Double = 0

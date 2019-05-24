@@ -10,6 +10,9 @@ import org.apache.spark.SparkContext
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import org.apache.spark.sql.functions._
 
+/**
+  * spark写入Kerberos下的hbase
+  */
 object spark_write_hbase {
   def main(args: Array[String]): Unit = {
     val krb5_conf = this.getClass.getResource("krb5.conf").getPath
@@ -23,6 +26,8 @@ object spark_write_hbase {
     UserGroupInformation.setConfiguration(conf)
     val ugi = UserGroupInformation.loginUserFromKeytabAndReturnUGI("zhangzy@HADOOP.COM", user_keytab)
     UserGroupInformation.setLoginUser(ugi)
+
+
 
     val spark = SparkSession.builder().appName("read_hbase")
       .master("local[3]")

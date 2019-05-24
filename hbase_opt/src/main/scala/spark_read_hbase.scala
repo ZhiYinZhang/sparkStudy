@@ -8,9 +8,12 @@ import org.apache.hadoop.security.UserGroupInformation
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SparkSession
 
+/**
+  * spark读取Kerberos下的hbase
+  */
 object spark_read_hbase {
   def main(args: Array[String]): Unit = {
-       val conf: Configuration = get_conf_and_login()
+    val conf: Configuration = get_conf_and_login()
 
     val spark=SparkSession.builder().appName("read_hbase")
       .master("local[3]")
@@ -78,6 +81,7 @@ def get_conf_and_login():Configuration={
   val user_keytab=this.getClass.getResource("zhangzy.keytab").getPath
 //  this.getClass.getResource("zhangzy.keytab")
   System.setProperty("java.security.krb5.conf", krb5_conf)
+
 
   val conf: Configuration = HBaseConfiguration.create()
   conf.set("hadoop.security.authentication", "Kerberos")
