@@ -40,48 +40,62 @@
         <!--</dependency>-->
 
 
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase</artifactId>
-            <version>${hbase_version}</version>
-            <type>pom</type>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.hbase</groupId>-->
+<!--            <artifactId>hbase</artifactId>-->
+<!--            <version>${hbase_version}</version>-->
+<!--            <type>pom</type>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
             <version>${hbase_version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-common</artifactId>
-            <version>${hbase_version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.hbase</groupId>-->
+<!--            <artifactId>hbase-common</artifactId>-->
+<!--            <version>${hbase_version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-server</artifactId>
             <version>${hbase_version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-protocol</artifactId>
-            <version>1.2.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.hbase</groupId>-->
+<!--            <artifactId>hbase-protocol</artifactId>-->
+<!--            <version>1.2.0</version>-->
+<!--        </dependency>-->
+
+
 
         <!-- https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-core -->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.phoenix</groupId>-->
-            <!--<artifactId>phoenix-core</artifactId>-->
-            <!--<version>4.14.0-HBase-1.2</version>-->
-        <!--</dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-spark -->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.phoenix</groupId>-->
-            <!--<artifactId>phoenix-spark</artifactId>-->
-            <!--<version>4.14.0-HBase-1.2</version>-->
-            <!--<scope>provided</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-core</artifactId>
+            <version>4.14.0-HBase-1.2</version>
+        </dependency>
 
+        <!--         https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-spark-->
+        <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-spark</artifactId>
+            <version>4.14.0-HBase-1.2</version>
+<!--            <scope>provided</scope>-->
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-examples -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-examples_2.11</artifactId>
+            <version>1.6.0-typesafe-001</version>
+        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>

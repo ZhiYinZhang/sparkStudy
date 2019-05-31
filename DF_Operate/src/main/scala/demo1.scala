@@ -14,9 +14,18 @@ import scala.collection.mutable.Map
 case class SimpleData(name:String,value:Double)
 object demo1 {
   def main(args: Array[String]): Unit = {
-      val a=1::3::Nil
-      println(a)
+      val spark=SparkSession.builder()
+      .appName("test")
+      .master("local[2]")
+      .getOrCreate()
+      import spark.implicits._
+      spark.sparkContext.setLogLevel("warn")
 
+
+    val df = spark.createDataFrame(Seq((1, 4), (1, 5), (2, 4), (2, 4), (2, 6), (3, 5), (3, 6)))
+                      .toDF("key", "value")
+    df.show()
+    df.stat.crosstab("key","value").show()
 
   }
 }

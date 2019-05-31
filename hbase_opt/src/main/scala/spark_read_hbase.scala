@@ -38,7 +38,7 @@ object spark_read_hbase {
 
     //获取rowkey
     val rowkeyRDD=hbaseRDD.map(tuple=>tuple._1)
-      .map(item=>Bytes.toString(item.get()))
+                      .map(item=>Bytes.toString(item.get()))
 
     rowkeyRDD.foreach(println)
     //获取Result
