@@ -8,7 +8,7 @@ object group_opt {
       .getOrCreate()
     import spark.implicits._
     spark.sparkContext.setLogLevel("warn")
-
+    pivot(spark)
 
 
   }
@@ -20,16 +20,10 @@ object group_opt {
       ("2019-01-15",2),
       ("2019-02-01",2),
       ("2019-02-15",4),
-      ("2019-03-01",3),
-      ("2019-04-01",4),
-      ("2019-05-01",5),
       ("2018-01-01",1),
       ("2018-01-15",2),
       ("2018-02-01",2),
-      ("2018-02-15",4),
-      ("2018-03-01",3),
-      ("2018-04-01",4),
-      ("2018-05-01",5)
+      ("2018-02-15",4)
     )
 
     val df=spark.createDataFrame(data).toDF("date","value")

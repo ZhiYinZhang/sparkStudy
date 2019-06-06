@@ -14,14 +14,12 @@ object spark_phoenix {
     import spark.implicits._
     spark.sparkContext.setLogLevel("warn")
 
-    val df=spark.range(10).withColumn("age",lit("100"))
-    df.saveToPhoenix(Map("table"->"test3","zkUrl"->"10.72.59.89:2181"))
+//    val df=spark.range(10).withColumn("age",lit("100"))
+//    df.saveToPhoenix(Map("table"->"test3","zkUrl"->"10.72.59.89:2181"))
 
 
-//    read_method2(spark).show()
+    read_method1(spark).write.option("header",true).mode("overwrite").csv("e://test//retail")
 
-    val date=new DateTime()
-    println(date.toLocalTime)
   }
 
 
@@ -30,7 +28,7 @@ object spark_phoenix {
   def read_method1(spark:SparkSession):DataFrame={
     val df=spark.read.format("org.apache.phoenix.spark")
       .option("zkUrl","10.72.59.89:2181")
-      .option("table","test3")
+      .option("table","tobacco.retail")
       .load()
     return df
   }
@@ -40,7 +38,7 @@ object spark_phoenix {
    val context = spark.sqlContext
    //字段区分大小写
    val df=context.phoenixTableAsDataFrame(
-     "test3",List("AGE","NAME"),zkUrl = Option("10.72.59.89:2181")
+     "test3",List("AGE","NAME"),zkUrl = Option("10.72.59.89:2181"),predicate=Option("age='100'")
    )
    return df
  }

@@ -22,10 +22,12 @@ object demo1 {
       spark.sparkContext.setLogLevel("warn")
 
 
-    val df = spark.createDataFrame(Seq((1, 4), (1, 5), (2, 4), (2, 4), (2, 6), (3, 5), (3, 6)))
-                      .toDF("key", "value")
-    df.show()
-    df.stat.crosstab("key","value").show()
+    val df=spark.range(10)
 
+
+    println(df.stat.bloomFilter("id",7,0.01).mightContainLong(1))
+
+    print(df.stat.countMinSketch("id",1,1,1).addLong(1))
+    df.show()
   }
 }

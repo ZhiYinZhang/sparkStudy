@@ -1,14 +1,16 @@
 
 import org.joda.time.DateTime
-
 import scala.collection.mutable.Map
+
 object opt_demo {
   def main(args: Array[String]): Unit = {
-    val dt = new DateTime()
-    println(dt.toString())
-    println(dt.toString("yyyy-MM-dd HH:mm:ss.SSS"))
-    val dt0=dt.plusDays(10)
-    println(dt0)
+      val l=List(1,2,4,5,6,7,8,9)
+
+
+
+
+
+
 
 
   }
