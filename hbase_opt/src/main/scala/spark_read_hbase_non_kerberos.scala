@@ -100,9 +100,6 @@ object spark_read_hbase_non_kerberos {
       (value(0),value(1),value(2),value(3))
     })
 
-
-
-
     spark.createDataFrame(rdd1).show()
   }
 }

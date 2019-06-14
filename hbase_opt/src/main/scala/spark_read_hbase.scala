@@ -75,6 +75,7 @@ object spark_read_hbase {
     })
 
   }
+
 def get_conf_and_login():Configuration={
   // 文件在resources目录下，但是需要在编译后添加到target/classes目录下
   val krb5_conf=this.getClass.getResource("krb5.conf").getPath
@@ -82,20 +83,19 @@ def get_conf_and_login():Configuration={
 //  this.getClass.getResource("zhangzy.keytab")
   System.setProperty("java.security.krb5.conf", krb5_conf)
 
-
   val conf: Configuration = HBaseConfiguration.create()
   conf.set("hadoop.security.authentication", "Kerberos")
   //    conf.set("hbase.zookeeper.quorum", "10.18.0.12") // zookeeper地址
   //    conf.set("hbase.zookeeper.property.clientPort", "2181") // zookeeper端口
   //    conf.set("hbase.security.authentication", "Kerberos")
   //    conf.set("zookeeper.znode.parent", "/hbase")
-  //    conf.set("hbase.regionserver.kerberos.principal", "hbase/_HOST@HADOOP.COM")
-  //    conf.set("hbase.master.kerberos.principal", "hbase/entrobus12@HADOOP.COM")
-  conf.set(TableInputFormat.INPUT_TABLE,"testtable")
+      conf.set("hbase.regionserver.kerberos.principal", "hbase/_HOST@HADOOP.COM")
+      conf.set("hbase.master.kerberos.principal", "hbase/entrobus12@HADOOP.COM")
+  conf.set(TableInputFormat.INPUT_TABLE,"test_ljs")
   //    conf.set(TableInputFormat.SCAN_ROW_START,"row-1")
   //    conf.set(TableInputFormat.SCAN_ROW_STOP,"row-9")
   //获取  列族 colfam1  列 col-1的值
-  conf.set(TableInputFormat.SCAN_COLUMNS,"colfam1:col-1")
+//  conf.set(TableInputFormat.SCAN_COLUMNS,"colfam1:col-1")
 
 
   try{

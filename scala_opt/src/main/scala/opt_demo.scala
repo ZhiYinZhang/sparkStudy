@@ -4,7 +4,11 @@ import scala.collection.mutable.Map
 
 object opt_demo {
   def main(args: Array[String]): Unit = {
-      val l=List(1,2,4,5,6,7,8,9)
+      val a1=Array("a","b","c")
+      val a2=a1.dropWhile(x=>x.contains("a"))
+
+      a1.foreach(println)
+      a2.foreach(println)
 
 
 

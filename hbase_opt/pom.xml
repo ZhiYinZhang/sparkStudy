@@ -61,19 +61,19 @@
             <artifactId>hbase-server</artifactId>
             <version>${hbase_version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.apache.hbase</groupId>-->
-<!--            <artifactId>hbase-protocol</artifactId>-->
-<!--            <version>1.2.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-protocol</artifactId>
+            <version>1.2.0</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/com.hortonworks/shc-core -->
-        <dependency>
-            <groupId>com.hortonworks</groupId>
-            <artifactId>shc-core</artifactId>
-            <version>1.1.1-2.1-s_2.11</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.hortonworks</groupId>-->
+<!--            <artifactId>shc-core</artifactId>-->
+<!--            <version>1.1.1-2.1-s_2.11</version>-->
+<!--        </dependency>-->
 
 
 
@@ -97,12 +97,6 @@
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>
             <version>3.4.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-examples -->
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-examples_2.11</artifactId>
-            <version>1.6.0-typesafe-001</version>
         </dependency>
     </dependencies>
     <build>
