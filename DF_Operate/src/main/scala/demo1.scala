@@ -14,20 +14,56 @@ import scala.collection.mutable.Map
 case class SimpleData(name:String,value:Double)
 object demo1 {
   def main(args: Array[String]): Unit = {
-      val spark=SparkSession.builder()
-      .appName("test")
-      .master("local[2]")
-      .getOrCreate()
-      import spark.implicits._
-      spark.sparkContext.setLogLevel("warn")
+//      val spark=SparkSession.builder()
+//      .appName("test")
+//      .master("local[2]")
+//        .config("spark.sql.autoBroadcastJoinThreshold",80*1024*1024)
+//      .getOrCreate()
+//      import spark.implicits._
+//      spark.sparkContext.setLogLevel("warn")
+//
+//
+//    val df1=spark.range(10000000)
+//    df1.explain()
+//    val df2=spark.range(5,10000000)
+//    df2.explain()
+//    val df3=df1.join(df2,"id")
+//
+//    df3.explain()
+//
+//   println(spark.conf.get("spark.sql.autoBroadcastJoinThreshold"))
 
+  }
+  def merge_sort(l:List[Double]):List[Double]={
 
-    val df=spark.range(10)
+    val length=l.length
+    if(length<=1){
+      return l
+    }
+    val middle=(length/2).toInt
 
+    val left=merge_sort(l.slice(0,middle))
+    val right=merge_sort(l.slice(middle,length))
 
-    println(df.stat.bloomFilter("id",7,0.01).mightContainLong(1))
+    return merge(left,right)
+  }
+  def merge(left:List[Double],right:List[Double]):List[Double]={
+    var result=List[Double]()
+    var i=0
+    var j=0
+    while(i<left.length & j<right.length){
+      if(left(i)<right(j)){
+        result=result.:+(left(i))
+        i+=1
+      }else{
+        result=result.:+(right(j))
+        j+=1
+      }
+    }
+    //跳出while之后 list里面还有值
+    result=result.++(left.slice(i,left.length))
+    result=result.++(right.slice(j,left.length))
 
-    print(df.stat.countMinSketch("id",1,1,1).addLong(1))
-    df.show()
+    return result
   }
 }
