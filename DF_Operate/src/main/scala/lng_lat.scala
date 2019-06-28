@@ -1,6 +1,9 @@
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
 
+/**
+  * 已知两个点的经纬度，计算这两个点的球面距离
+  */
 object lng_lat {
   def main(args: Array[String]): Unit = {
     val spark: SparkSession = SparkSession.builder()
