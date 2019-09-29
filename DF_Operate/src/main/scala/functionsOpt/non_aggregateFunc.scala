@@ -1,6 +1,6 @@
 package functionsOpt
 
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.{Column, DataFrame, SparkSession}
 import org.apache.spark.sql.functions._
 
 object non_aggregateFunc {
@@ -30,8 +30,8 @@ object non_aggregateFunc {
       (Map(3->"c"),Array(3,3,1),Array(1,2,1),0,3,1),
       (Map(4->"d"),Array(1,3,1),Array(1,1,1),-1,5,3)
     )).toDF("a","b","c","d","e","f")
-    df1.show()
 
+    df1.show()
 //    df1.select($"*",array("f")).show()
 
     // bitwiseNOT()按位取反

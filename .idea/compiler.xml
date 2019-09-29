@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="structuredStreaming" />
         <module name="DF_Operate" />
         <module name="spark24_newFeature" />
-        <module name="structuredStreaming" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
