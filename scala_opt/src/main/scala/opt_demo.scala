@@ -4,17 +4,10 @@ import scala.collection.mutable.Map
 
 object opt_demo {
   def main(args: Array[String]): Unit = {
-      val a1=Array("a","b","c")
-      val a2=a1.dropWhile(x=>x.contains("a"))
+    val ints = (0 to 10).toArray
+    ints.update(0,100)
 
-      a1.foreach(println)
-      a2.foreach(println)
-
-
-
-
-
-
+    ints.foreach(println)
 
 
   }
@@ -26,5 +19,13 @@ object opt_demo {
       case e:Exception=>{println(e.getMessage)}
     }
     result
+  }
+  def printfor(x:Int):Unit={
+    (0 to x).foreach(println)
+  }
+}
+class opt_demo1{
+  def printfor(x:Int):Unit={
+    (0 to x).foreach(println)
   }
 }

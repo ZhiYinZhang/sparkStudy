@@ -14,24 +14,20 @@ import scala.collection.mutable.Map
 case class SimpleData(name:String,value:Double)
 object demo1 {
   def main(args: Array[String]): Unit = {
-//      val spark=SparkSession.builder()
-//      .appName("test")
-//      .master("local[2]")
-//        .config("spark.sql.autoBroadcastJoinThreshold",80*1024*1024)
-//      .getOrCreate()
-//      import spark.implicits._
-//      spark.sparkContext.setLogLevel("warn")
-//
-//
-//    val df1=spark.range(10000000)
-//    df1.explain()
-//    val df2=spark.range(5,10000000)
-//    df2.explain()
-//    val df3=df1.join(df2,"id")
-//
-//    df3.explain()
-//
-//   println(spark.conf.get("spark.sql.autoBroadcastJoinThreshold"))
+      val spark=SparkSession.builder()
+      .appName("test")
+      .master("local[2]")
+        .config("spark.sql.autoBroadcastJoinThreshold",80*1024*1024)
+      .getOrCreate()
+      import spark.implicits._
+      spark.sparkContext.setLogLevel("warn")
+
+      spark.range(10).withColumn("value",lit("abc 中文"))
+        .withColumn("hash",hash(col("value")))
+      .withColumn("md5",md5(col("value")))
+      .withColumn("sha1",sha1(col("value")))
+      .withColumn("sha2",sha2(col("value"),256))
+        .show(truncate=false)
 
   }
   def merge_sort(l:List[Double]):List[Double]={
@@ -60,7 +56,7 @@ object demo1 {
         j+=1
       }
     }
-    //跳出while之后 list里面还有值
+    //两个长度不同的list,在跳出while之后,某一个list里面还有值
     result=result.++(left.slice(i,left.length))
     result=result.++(right.slice(j,left.length))
 
