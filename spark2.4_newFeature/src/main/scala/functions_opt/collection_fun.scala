@@ -49,7 +49,8 @@ object collection_fun {
 //    sql("select zip_with(array(1,2,3),array(3,1,4),(x,y)->x+y) as sum").show(false)
 
     //如果lambda函数有两个参数，第二个参数代表该元素的索引
-    sql("select transform(array(1,2,3),x->x*2)").show()
+//    sql("select transform(array(1,2,3),x->x*2)").show()
+    get_json_schema(spark)
   }
 
   def get_json_schema(spark:SparkSession):DataFrame={

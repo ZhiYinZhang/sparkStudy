@@ -24,7 +24,7 @@ object streamJoinStream {
           }
           override def onQueryProgress(event: StreamingQueryListener.QueryProgressEvent): Unit = {
             val progress: StreamingQueryProgress = event.progress
-                  println(progress)
+            println(progress)
           }
           override def onQueryTerminated(event: StreamingQueryListener.QueryTerminatedEvent): Unit = {
           }
