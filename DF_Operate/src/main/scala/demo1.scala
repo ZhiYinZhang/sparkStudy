@@ -1,35 +1,58 @@
 
 
+import java.io.{BufferedInputStream, BufferedOutputStream, FileInputStream, FileOutputStream}
 import java.lang
+import java.time.{Clock, Instant, ZoneId}
+import java.util.{Date, Properties}
 
+import org.apache.spark.internal.Logging
 import org.apache.spark.rdd.RDD
+import org.apache.spark.scheduler.{SparkListener, SparkListenerApplicationEnd, SparkListenerApplicationStart, SparkListenerStageSubmitted, StageInfo}
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql._
+import org.apache.spark.sql.execution.QueryExecution
+import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.streaming.{StreamingQueryListener, StreamingQueryProgress}
 import org.apache.spark.sql.types._
+import org.apache.spark.sql.util.QueryExecutionListener
+import org.apache.spark.util.LongAccumulator
+import org.apache.spark.util.sketch.BloomFilter
 
 import scala.collection.mutable
 import scala.util.Random
-import scala.collection.mutable.Map
 
-case class SimpleData(name:String,value:Double)
+
+//case class SimpleData(name:String,value:Double)
+
+
 object demo1 {
   def main(args: Array[String]): Unit = {
       val spark=SparkSession.builder()
       .appName("test")
       .master("local[2]")
-        .config("spark.sql.autoBroadcastJoinThreshold",80*1024*1024)
       .getOrCreate()
       import spark.implicits._
-      spark.sparkContext.setLogLevel("warn")
+      val sc=spark.sparkContext
+      sc.setLogLevel("WARN")
 
-      spark.range(10).withColumn("value",lit("abc 中文"))
-        .withColumn("hash",hash(col("value")))
-      .withColumn("md5",md5(col("value")))
-      .withColumn("sha1",sha1(col("value")))
-      .withColumn("sha2",sha2(col("value"),256))
-        .show(truncate=false)
+//    val path="e://test//delta//test1"
+//    val df=spark.readStream.format("delta").load(path)
+//
+//    val window=Window.partitionBy("id").orderBy("date")
+//
+//    val df1=df.withColumn("value1",lead("value",1).over(window))
+//
+//    df1.writeStream.format("console").outputMode("append")
+//      .start()
+//      .awaitTermination()
+
+
 
   }
+
+
+
+
   def merge_sort(l:List[Double]):List[Double]={
 
     val length=l.length

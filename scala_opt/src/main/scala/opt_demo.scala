@@ -1,13 +1,22 @@
 
-import org.joda.time.DateTime
-import scala.collection.mutable.Map
 
+
+import java.sql.Timestamp
+import java.util.Date
+
+import org.joda.time.DateTime
+
+import scala.collection.mutable.Map
+import scala.collection._
 object opt_demo {
   def main(args: Array[String]): Unit = {
-    val ints = (0 to 10).toArray
-    ints.update(0,100)
 
-    ints.foreach(println)
+    val t=new Timestamp(new Date().getTime)
+    println(t)
+   val i=Iterator(1,2,3,4)
+    println(i.size)
+    println(i.size)
+
 
 
   }

@@ -9,7 +9,7 @@
     </parent>
     <properties>
         <scala_version>2.11.8</scala_version>
-        <spark_version>2.3.0</spark_version>
+        <spark_version>2.4.4</spark_version>
         <hbase_version>1.2.0</hbase_version>
     </properties>
     <modelVersion>4.0.0</modelVersion>
