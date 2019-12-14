@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="Maven 1" modules="structuredStreaming">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\structuredStreaming\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 2" modules="sparkTest">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\demo\sparkTest\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 3" modules="DF_Operate">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\ideaProject\sparkStudy\DF_Operate\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 4" modules="spark24_newFeature">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\spark2.4_newFeature\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 5" modules="scala_opt">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\ideaProject\sparkStudy\scala_opt\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 6" modules="sparkML_Opt">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\ideaProject\sparkStudy\sparkML_Opt\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 7" modules="hbase_opt">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\ideaProject\sparkStudy\hbase_opt\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+  </component>
+</project>

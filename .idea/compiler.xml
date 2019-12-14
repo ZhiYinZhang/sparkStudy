@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="DF_Operate" />
+        <module name="DStream" />
+        <module name="hbase_opt" />
+        <module name="scala_opt" />
+        <module name="spark2.4_newFeature" />
+        <module name="spark24_newFeature" />
+        <module name="sparkML_Opt" />
+        <module name="structuredStreaming" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sparkTest" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
