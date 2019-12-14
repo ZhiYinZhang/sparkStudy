@@ -56,7 +56,7 @@ object statefulOperation {
 
 
      addDF.writeStream
-          .outputMode("append")
+        .outputMode("append")
         .format("console")
         .option("truncate",false)
         .start()

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
         <module name="DF_Operate" />
         <module name="DStream" />
         <module name="hbase_opt" />
@@ -19,5 +20,16 @@
     <bytecodeTargetLevel>
       <module name="sparkTest" target="1.5" />
     </bytecodeTargetLevel>
+=======
+        <module name="hbase_opt" />
+        <module name="sparkML_Opt" />
+        <module name="scala_opt" />
+        <module name="DF_Operate" />
+        <module name="DStream" />
+        <module name="spark2.4_newFeature" />
+        <module name="structuredStreaming" />
+      </profile>
+    </annotationProcessing>
+>>>>>>> 8df6ae0df89e4f3a0f7bdd7ec7fd4a0deb8f8688
   </component>
 </project>

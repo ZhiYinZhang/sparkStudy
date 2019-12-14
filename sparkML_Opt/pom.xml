@@ -10,7 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sparkML_Opt</artifactId>
-
+    <properties>
+        <spark_version>2.4.4</spark_version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -20,18 +22,18 @@
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.11</artifactId>
-            <version>2.3.2</version>
+            <version>${spark_version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_2.11</artifactId>
-            <version>2.3.2</version>
+            <version>${spark_version}</version>
         </dependency>
 
         <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-mllib_2.11</artifactId>
-        <version>2.3.2</version>
+            <version>${spark_version}</version>
         <!--<scope>runtime</scope>-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.johnsnowlabs.nlp/spark-nlp -->

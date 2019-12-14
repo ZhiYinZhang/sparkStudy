@@ -3,9 +3,12 @@ package com.entrobus.statefulOperations
 
 import java.sql.Timestamp
 
-import org.apache.spark.sql.streaming.{GroupState, GroupStateTimeout}
+import org.apache.spark.sql.streaming.{GroupState, GroupStateTimeout, StreamingQueryListener}
 import org.apache.spark.sql.{DataFrame, Dataset, KeyValueGroupedDataset, SparkSession}
 
+/**
+  * 状态：即当前计算的结果和以前的数据有关(即要用到以前的数据)，聚合操作：sum，count，max，min等
+  */
 object wordCountWithStateful {
   def main(args:Array[String]):Unit={
     val spark: SparkSession = SparkSession.builder()
@@ -15,47 +18,37 @@ object wordCountWithStateful {
     spark.sparkContext.setLogLevel("WARN")
     import spark.implicits._
 
-    val lines: DataFrame = spark.readStream
-      .format("socket")
-      .option("host", "10.18.0.19")
-      .option("port", "9999")
-      .option("includeTimestamp",true)
-      .load()
-    val splitDS: Dataset[(String, Timestamp)] = lines.as[(String,Timestamp)].flatMap(x=>{x._1.split(" ").map((_,x._2))})
-    val keyValue: KeyValueGroupedDataset[String, (String, Timestamp)] = splitDS.groupByKey(_._1)
-//    val value: KeyValueGroupedDataset[String, Long] = splitDS.groupByKey(_._1).mapValues(_._2.getTime())
 
-    val result: Dataset[UpdateState] = keyValue.mapGroupsWithState(GroupStateTimeout.ProcessingTimeTimeout())((word: String, lines: Iterator[(String, Timestamp)], state: GroupState[UpdateState]) => {
-     val processTime = new Timestamp(state.getCurrentProcessingTimeMs())
-//      println(processTime)
-      if (state.hasTimedOut) {
-        val oldState: UpdateState = state.get
-        val finalState: UpdateState =UpdateState(oldState.word,oldState.num,oldState.startTimestamp,oldState.endTimestamp,oldState.processTime,true)
-        state.remove()
-        finalState
-      } else {
-        val timestamps: Seq[Long] = lines.map(_._2.getTime).toSeq
-        val updateValue:UpdateState = if (state.exists) {
-          val oldState: UpdateState = state.get
-          val newNum: Long = oldState.num + timestamps.size
-          UpdateState(word,newNum,oldState.startTimestamp,new Timestamp(timestamps.max),processTime,false)
-        } else {
-          UpdateState(word,timestamps.size,new Timestamp(timestamps.min),new Timestamp(timestamps.max),processTime,false)
-        }
-        state.setTimeoutDuration("3 seconds")
-        state.update(updateValue)
-        updateValue
+    spark.streams.addListener(new StreamingQueryListener {
+      override def onQueryStarted(event: StreamingQueryListener.QueryStartedEvent): Unit = {}
+
+      override def onQueryProgress(event: StreamingQueryListener.QueryProgressEvent): Unit = {
+        val progress = event.progress
+        println(progress.eventTime)
       }
+
+      override def onQueryTerminated(event: StreamingQueryListener.QueryTerminatedEvent): Unit = ???
     })
 
 
+    val lines: DataFrame = spark.readStream
+      .format("delta")
+      .load("e://test//delta//test")
+
+//    val splitDS: Dataset[(String, Timestamp)] = lines.as[(String,Timestamp)].flatMap(x=>{x._1.split(" ").map((_,x._2))})
+
+    val result=lines.toDF("word","timestamp").withWatermark("timestamp","3 days")
+        .groupBy("word").count()
+
+
     result.writeStream
-      .outputMode("update")
+      .outputMode("complete")
       .format("console")
       .option("truncate",false)
       .start()
       .awaitTermination()
 
   }
-  case class UpdateState(word:String,num:Long,startTimestamp:Timestamp,endTimestamp:Timestamp,processTime:Timestamp,timeout:Boolean)
+  //把状态封装成一个样例类
+  case class ValueState(word:String,num:Long,startTimestamp:Timestamp,endTimestamp:Timestamp,processTime:Timestamp,timeout:Boolean)
 }

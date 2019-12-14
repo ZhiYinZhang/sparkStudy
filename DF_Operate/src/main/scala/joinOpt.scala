@@ -14,15 +14,16 @@ object joinOpt {
   import spark.implicits._
 //    sc.setLogLevel("WARN")
 
-    val df0=spark.range(0,1000000).withColumn("index0",monotonically_increasing_id())
+    val df0=spark.range(0,100).withColumn("index0",monotonically_increasing_id())
       .withColumnRenamed("id0","id")
     val df1=spark.range(0,100000).withColumn("index1",monotonically_increasing_id())
       .withColumnRenamed("id1","id")
      val df2=df1.join(df0,expr("index0=index1"),"left")
     //查看物理计划
      df2.explain()
-
+//
      df2.show()
+
     Thread.sleep(1000*60*10)
 
 }

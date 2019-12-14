@@ -40,7 +40,7 @@ object createIndexCol {
 //    df1 = df1.withColumn("index",row_number().over(Window.orderBy("col1")))
 
     //3.将DataFrame转成RDD，使用RDD的方法zipWithIndex()/zipWithUniqueId()，分区数不变
-//    var tempRDD: RDD[(Row, Long)] = df1.rdd.zipWithIndex()
+    var tempRDD: RDD[(Row, Long)] = df1.rdd.zipWithIndex()
 //    println(System.currentTimeMillis())
 //    val record: RDD[Row] = tempRDD.map(x => {
 //          Row(x._1.get(0), x._2)

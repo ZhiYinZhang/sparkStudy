@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
+<<<<<<< HEAD
     <profile name="Maven 1" modules="structuredStreaming">
       <parameters>
         <parameter value="-dependencyfile" />
@@ -41,6 +42,48 @@
       <parameters>
         <parameter value="-dependencyfile" />
         <parameter value="D:\ideaProject\sparkStudy\hbase_opt\target/.scala_dependencies" />
+=======
+    <profile name="Maven 1" modules="DF_Operate">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\DF_Operate\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 2" modules="structuredStreaming">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\structuredStreaming\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 3" modules="spark2.4_newFeature">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\spark2.4_newFeature\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 4" modules="DStream">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\DStream\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 5" modules="sparkML_Opt">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\sparkML_Opt\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 6" modules="hbase_opt">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\hbase_opt\target/.scala_dependencies" />
+      </parameters>
+    </profile>
+    <profile name="Maven 7" modules="scala_opt">
+      <parameters>
+        <parameter value="-dependencyfile" />
+        <parameter value="D:\IdeaProjects\sparkStudy\scala_opt\target/.scala_dependencies" />
+>>>>>>> 8df6ae0df89e4f3a0f7bdd7ec7fd4a0deb8f8688
       </parameters>
     </profile>
   </component>
