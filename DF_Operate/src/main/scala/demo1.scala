@@ -45,7 +45,7 @@ object demo1 {
 //    df1.writeStream.format("console").outputMode("append")
 //      .start()
 //      .awaitTermination()
-
+    val schema=schema_of_json("""{"type":"insert","timestamp":1576114094000,"databaseName":"aistrong","tableName":"test1","schema":"{"type":"struct","fields":[{"name":"id","type":"long","nullable":true,"metadata":{}},{"name":"a","type":"long","nullable":true,"metadata":{}},{"name":"b","type":"long","nullable":true,"metadata":{}}]}","rows":[{"id":6,"a":1,"b":1}]}""")
 
 
   }
