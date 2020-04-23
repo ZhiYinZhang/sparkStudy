@@ -17,7 +17,6 @@
         <module>hbase_opt</module>
         <module>DStream</module>
         <module>scala_opt</module>
-        <module>memory_test</module>
     </modules>
 
 

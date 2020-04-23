@@ -19,6 +19,7 @@
       <module name="DF_Operate" target="1.5" />
       <module name="DStream" target="1.5" />
       <module name="hbase_opt" target="1.5" />
+      <module name="memory_test" target="1.5" />
       <module name="scala_opt" target="1.5" />
       <module name="spark2.4_newFeature" target="1.5" />
       <module name="sparkML_Opt" target="1.5" />

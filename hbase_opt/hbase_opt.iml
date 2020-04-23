@@ -198,6 +198,7 @@
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-hdfs:2.5.1" level="project" />
     <orderEntry type="library" name="Maven: commons-daemon:commons-daemon:1.0.13" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hbase:hbase-protocol:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.hortonworks:shc-core:1.1.1-2.1-s_2.11" level="project" />
     <orderEntry type="library" name="Maven: org.apache.phoenix:phoenix-core:4.14.0-HBase-1.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tephra:tephra-api:0.14.0-incubating" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tephra:tephra-core:0.14.0-incubating" level="project" />

@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DF_Operate/DF_Operate.iml" filepath="$PROJECT_DIR$/DF_Operate/DF_Operate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DStream/DStream.iml" filepath="$PROJECT_DIR$/DStream/DStream.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hbase_opt/hbase_opt.iml" filepath="$PROJECT_DIR$/hbase_opt/hbase_opt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scala_opt/scala_opt.iml" filepath="$PROJECT_DIR$/scala_opt/scala_opt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spark2.4_newFeature/spark2.4_newFeature.iml" filepath="$PROJECT_DIR$/spark2.4_newFeature/spark2.4_newFeature.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sparkML_Opt/sparkML_Opt.iml" filepath="$PROJECT_DIR$/sparkML_Opt/sparkML_Opt.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sparkStudy.iml" filepath="$PROJECT_DIR$/.idea/sparkStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/structuredStreaming/structuredStreaming.iml" filepath="$PROJECT_DIR$/structuredStreaming/structuredStreaming.iml" />
     </modules>
   </component>
 </project>
