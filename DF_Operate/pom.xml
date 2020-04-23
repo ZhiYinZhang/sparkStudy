@@ -74,18 +74,12 @@
 <!--        </dependency>-->
 
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.htrace/htrace-core &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.htrace</groupId>-->
-            <!--<artifactId>htrace-core</artifactId>-->
-            <!--<version>3.1.0-incubating</version>-->
-        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.delta/delta-core -->
         <dependency>
             <groupId>io.delta</groupId>
             <artifactId>delta-core_2.11</artifactId>
-            <version>0.4.0</version>
+            <version>0.5.0</version>
         </dependency>
 
 <!--      read excel-->
@@ -94,7 +88,6 @@
             <artifactId>spark-excel_2.11</artifactId>
             <version>0.11.1</version>
         </dependency>
-
 
 
     </dependencies>

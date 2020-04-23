@@ -15,13 +15,14 @@ object SourceOfCSV {
     val schema=new StructType().add("name","string")
       .add("age","integer")
       .add("job","string")
-
     val jsonDF: DataFrame = spark.readStream
       .schema(schema)
       .option("sep",";")
       .format("csv")
       .load("E:\\test\\csv")
 //    val result: DataFrame = jsonDF.groupBy("age").count()
+
+    
     val query:StreamingQuery=jsonDF.writeStream
       .outputMode("append")
       .format("csv")

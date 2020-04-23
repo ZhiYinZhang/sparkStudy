@@ -98,10 +98,13 @@ class mysqlSource(sqlContext:SQLContext,
     val st = conn.prepareStatement(sql)
     val rs = st.executeQuery()
 
-//    val rows: Iterator[InternalRow] = JdbcUtils.resultSetToSparkInternalRows(rs, schemaOption.get, inputMetrics) //todo 好用
-    //val rdd: RDD[InternalRow] = rdd
+    //spark里面的jdbcUtils工具类，将查询结果转成InternalRow
+    //但是这里有问题，一个batch里面的数据都会变成和最后一条数据一样
+//    val rows: Iterator[InternalRow] = JdbcUtils.resultSetToSparkInternalRows(rs, schemaOption.get, inputMetrics)
 
     val rows = getInternalRow1(rs)
+
+
     val rdd = sqlContext.sparkContext.parallelize(rows.toSeq)
 
     currentOffset = offset2Map(end)
@@ -135,7 +138,7 @@ class mysqlSource(sqlContext:SQLContext,
      rows.toIterator
   }
   /*
-  通用版   有待增强
+  通用版   有待增强  可以参考 JdbcUtils.resultSetToSparkInternalRows#makeGetter
   * 获取本次batch的数据，转成InternalRow
   * 在re.next()中：
   * 1.遍历字段，根据schema中每个字段的类型，rs使用相应的api获取对应类型的字段数据
@@ -160,7 +163,14 @@ class mysqlSource(sqlContext:SQLContext,
               case IntegerType => rs.getInt(field.name)
               case StringType => UTF8String.fromString(rs.getString(field.name))
               case LongType =>rs.getLong(field.name)
-              case TimestampType =>rs.getTimestamp(field.name)
+              case TimestampType =>{
+                val t:java.lang.Long=rs.getTimestamp(field.name) match{
+                  case null=>null
+                    //时间戳在IntervalRow里面必须是微秒单位的
+                  case value=>value.getTime*1000
+                  }
+                t
+              }
               case DoubleType => rs.getDouble(field.name)
             }
             s=s.:+(value)

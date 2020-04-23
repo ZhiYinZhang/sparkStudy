@@ -69,8 +69,8 @@ object topN {
     val newState=State(province,cityMaps)
     state.update(newState)
 
-    //将cityMaps排序，然后取topN
-    val tuples: Seq[(String, Long)] = cityMaps.toSeq.sortWith(_._2<_._2).take(3)
+    //将cityMaps根据值倒序排序，然后取topN
+    val tuples: Seq[(String, Long)] = cityMaps.toSeq.sortWith(_._2>_._2).take(3)
     val updates: Seq[Update] = tuples.map(v => Update(province, v._1, v._2))
     updates.toIterator
 

@@ -6,30 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-<<<<<<< HEAD
+        <module name="hbase_opt" />
+        <module name="sparkML_Opt" />
+        <module name="scala_opt" />
         <module name="DF_Operate" />
         <module name="DStream" />
-        <module name="hbase_opt" />
-        <module name="scala_opt" />
         <module name="spark2.4_newFeature" />
-        <module name="spark24_newFeature" />
-        <module name="sparkML_Opt" />
         <module name="structuredStreaming" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="sparkTest" target="1.5" />
+      <module name="DF_Operate" target="1.5" />
+      <module name="DStream" target="1.5" />
+      <module name="hbase_opt" target="1.5" />
+      <module name="scala_opt" target="1.5" />
+      <module name="spark2.4_newFeature" target="1.5" />
+      <module name="sparkML_Opt" target="1.5" />
+      <module name="sparkStudy" target="1.5" />
+      <module name="structuredStreaming" target="1.5" />
     </bytecodeTargetLevel>
-=======
-        <module name="hbase_opt" />
-        <module name="sparkML_Opt" />
-        <module name="scala_opt" />
-        <module name="DF_Operate" />
-        <module name="DStream" />
-        <module name="spark2.4_newFeature" />
-        <module name="structuredStreaming" />
-      </profile>
-    </annotationProcessing>
->>>>>>> 8df6ae0df89e4f3a0f7bdd7ec7fd4a0deb8f8688
   </component>
 </project>

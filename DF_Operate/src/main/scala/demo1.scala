@@ -17,7 +17,7 @@ import org.apache.spark.sql.types._
 import org.apache.spark.sql.util.QueryExecutionListener
 import org.apache.spark.util.LongAccumulator
 import org.apache.spark.util.sketch.BloomFilter
-
+import org.apache.spark.sql.functions._
 import scala.collection.mutable
 import scala.util.Random
 
@@ -29,7 +29,7 @@ object demo1 {
   def main(args: Array[String]): Unit = {
       val spark=SparkSession.builder()
       .appName("test")
-      .master("local[2]")
+      .master("local[*]")
       .getOrCreate()
       import spark.implicits._
       val sc=spark.sparkContext
@@ -45,12 +45,46 @@ object demo1 {
 //    df1.writeStream.format("console").outputMode("append")
 //      .start()
 //      .awaitTermination()
-    val schema=schema_of_json("""{"type":"insert","timestamp":1576114094000,"databaseName":"aistrong","tableName":"test1","schema":"{"type":"struct","fields":[{"name":"id","type":"long","nullable":true,"metadata":{}},{"name":"a","type":"long","nullable":true,"metadata":{}},{"name":"b","type":"long","nullable":true,"metadata":{}}]}","rows":[{"id":6,"a":1,"b":1}]}""")
+//    val schema=schema_of_json("""{"type":"insert","timestamp":1576114094000,"databaseName":"aistrong","tableName":"test1","schema":"{"type":"struct","fields":[{"name":"id","type":"long","nullable":true,"metadata":{}},{"name":"a","type":"long","nullable":true,"metadata":{}},{"name":"b","type":"long","nullable":true,"metadata":{}}]}","rows":[{"id":6,"a":1,"b":1}]}""")
 
+    val data=Seq(
+
+      Tuple1(3),
+      Tuple1(2),
+      Tuple1(4),
+      Tuple1(5),
+        Tuple1(1),
+      Tuple1(1)
+    )
+//    val df: Dataset[lang.Long] = spark.range(100)
+     val df=spark.createDataFrame(data).toDF("id")
+
+    val df1=df.repartitionByRange(2,$"id")
+
+
+    df.describe()
+    df.summary()
+
+    df.count()
+    df.collect()
+    df.head()
+    df.first()
+
+    //spark.sql.shuffle.partitions
+//    val df1=df.repartition($"id")
+
+    df1.withColumn("pid",spark_partition_id())
+      .show(100)
+
+
+//    val df1=df.rdd.mapPartitionsWithIndex((id,iter)=>{
+////      iter.toList.foreach(println)
+//      Iterator((id,iter.toList.size))
+//  }).toDF("pid","psize")
+//
+//   df1.show()
 
   }
-
-
 
 
   def merge_sort(l:List[Double]):List[Double]={

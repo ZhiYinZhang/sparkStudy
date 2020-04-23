@@ -72,6 +72,11 @@
             <version>0.18.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.webank.wedatasphere.linkis</groupId>
+            <artifactId>linkis-ujes-client</artifactId>
+            <version>0.9.1</version>
+        </dependency>
 
     </dependencies>
     <build>

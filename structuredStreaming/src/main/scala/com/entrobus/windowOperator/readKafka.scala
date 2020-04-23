@@ -31,6 +31,7 @@ object readKafka {
         }
         override def onQueryProgress(event: StreamingQueryListener.QueryProgressEvent): Unit = {
           val progress: StreamingQueryProgress = event.progress
+
           //每个batch的id
            batchId= progress.batchId
           //每个batch处理的数据量

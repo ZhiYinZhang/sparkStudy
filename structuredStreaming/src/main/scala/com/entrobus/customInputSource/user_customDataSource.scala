@@ -2,7 +2,7 @@ package com.entrobus.customInputSource
 
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.{IntegerType, StringType, StructType}
+import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType, TimestampType}
 
 object user_customDataSource {
   def main(args: Array[String]): Unit = {
@@ -12,19 +12,19 @@ object user_customDataSource {
       .getOrCreate()
     val sc: SparkContext = spark.sparkContext
     sc.setLogLevel("WARN")
-    val schema: StructType = new StructType()
-      .add("pid", IntegerType)
-      .add("pname", StringType)
-      .add("price", IntegerType)
-      .add("category_id", StringType)
+    val schema=StructType(List(
+      StructField("id",IntegerType),
+      StructField("createTime",TimestampType),
+      StructField("updateTime",TimestampType)
+    ))
 
 
      val options = Map(
        "driverClass"->"com.mysql.jdbc.Driver",
-       "jdbcUrl"->"jdbc:mysql://localhost:3306/entrobus",
+       "jdbcUrl"->"jdbc:mysql://localhost:3306/test",
        "user"->"root",
        "password"->"123456",
-       "tableName"->"product"
+       "tableName"->"test"
      )
 
     val source = spark.readStream
@@ -34,6 +34,7 @@ object user_customDataSource {
       .schema(schema)
       .load()
 
+    source.printSchema()
     source.writeStream
       .outputMode("append")
       .format("console")
