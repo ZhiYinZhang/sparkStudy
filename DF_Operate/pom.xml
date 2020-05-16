@@ -89,6 +89,12 @@
             <version>0.11.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.amazon.deequ/deequ -->
+        <dependency>
+            <groupId>com.amazon.deequ</groupId>
+            <artifactId>deequ</artifactId>
+            <version>1.0.2</version>
+        </dependency>
 
     </dependencies>
     <build>

@@ -1,6 +1,6 @@
 package continous
 
-import generateData._
+import MicroBatchVSContinous.generateData._
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.Properties

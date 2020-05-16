@@ -27,7 +27,8 @@ object update {
 //    df2.join(df3,"partition").writeStream.format("console")
 //      .outputMode("complete").start().awaitTermination()
 
-//    val deltaTable: DeltaTable = DeltaTable.forPath(spark,"e://test//delta//test1")
+    val deltaTable: DeltaTable = DeltaTable.forPath(spark,"e://test//delta//test1")
+
 //
 //
 //    val updateDF=spark.range(5,15).withColumn("value",lit(10))

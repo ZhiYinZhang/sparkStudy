@@ -2,7 +2,7 @@ package foreachSink
 
 import java.sql.{Connection, PreparedStatement, Timestamp}
 import org.apache.spark.sql.functions._
-import generateData._
+import MicroBatchVSContinous.generateData._
 import com.mchange.v2.c3p0.ComboPooledDataSource
 import org.apache.spark.sql._
 import org.apache.spark.sql.streaming.{StreamingQueryListener, StreamingQueryProgress}

@@ -21,7 +21,6 @@ import org.apache.spark.sql.functions._
 import scala.collection.mutable
 import scala.util.Random
 
-
 //case class SimpleData(name:String,value:Double)
 
 
@@ -48,33 +47,26 @@ object demo1 {
 //    val schema=schema_of_json("""{"type":"insert","timestamp":1576114094000,"databaseName":"aistrong","tableName":"test1","schema":"{"type":"struct","fields":[{"name":"id","type":"long","nullable":true,"metadata":{}},{"name":"a","type":"long","nullable":true,"metadata":{}},{"name":"b","type":"long","nullable":true,"metadata":{}}]}","rows":[{"id":6,"a":1,"b":1}]}""")
 
     val data=Seq(
-
+      Tuple1(4),
+      Tuple1(4),
       Tuple1(3),
       Tuple1(2),
-      Tuple1(4),
-      Tuple1(5),
-        Tuple1(1),
+      Tuple1(2),
+      Tuple1(1),
+      Tuple1(1),
       Tuple1(1)
     )
 //    val df: Dataset[lang.Long] = spark.range(100)
      val df=spark.createDataFrame(data).toDF("id")
 
+    spark.sql("")
     val df1=df.repartitionByRange(2,$"id")
-
-
-    df.describe()
-    df.summary()
-
-    df.count()
-    df.collect()
-    df.head()
-    df.first()
 
     //spark.sql.shuffle.partitions
 //    val df1=df.repartition($"id")
 
-    df1.withColumn("pid",spark_partition_id())
-      .show(100)
+//    df1.withColumn("pid",spark_partition_id())
+//      .show(100)
 
 
 //    val df1=df.rdd.mapPartitionsWithIndex((id,iter)=>{
@@ -83,7 +75,6 @@ object demo1 {
 //  }).toDF("pid","psize")
 //
 //   df1.show()
-
   }
 
 

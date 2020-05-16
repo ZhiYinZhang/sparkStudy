@@ -1,6 +1,6 @@
 package foreachSink
 import java.sql.Timestamp
-import generateData._
+import MicroBatchVSContinous.generateData._
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions.window
 import org.apache.spark.sql.streaming.{StreamingQueryListener, StreamingQueryProgress}

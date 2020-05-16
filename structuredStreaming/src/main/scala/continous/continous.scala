@@ -3,7 +3,7 @@ package continous
 import java.sql.Timestamp
 import java.util.Properties
 
-import generateData.{deleteDir, readProperties}
+import MicroBatchVSContinous.generateData.{deleteDir, readProperties}
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 import org.apache.spark.sql.streaming.Trigger
 

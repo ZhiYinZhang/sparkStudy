@@ -3,7 +3,7 @@ package continous
 import java.sql.Timestamp
 import java.util.Properties
 
-import generateData.readProperties
+import MicroBatchVSContinous.generateData.readProperties
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 
 object readKafkaTest {

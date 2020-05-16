@@ -58,7 +58,7 @@ package a{
     }
   }
   class h{
-    import b._
+    import b.c
 
   }
 
