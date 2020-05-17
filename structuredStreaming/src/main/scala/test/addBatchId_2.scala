@@ -20,11 +20,11 @@ object addBatchId_2 {
     sc.setLogLevel("WARN")
 
     //广播变量应该在这里初始化
-    var bd: Broadcast[Long]=sc.broadcast(0)
+    var bd: Broadcast[Long]=sc.broadcast(1)
 
     val streamDF: DataFrame = spark.readStream
       .format("rate")
-      .option("rowsPerSecond", 1)
+      .option("rowsPerSecond", 2)
       .load()
     streamDF.printSchema()
 
@@ -46,25 +46,18 @@ object addBatchId_2 {
     var batchId=(-1).toLong
     while(true){
       val progress: StreamingQueryProgress = query.lastProgress
+
       if(progress !=null){
         val curr_batchId=progress.batchId
-
-        if(curr_batchId>batchId){
-          println(progress.prettyJson)
+        //batchId有变化及batch有数据(有时那个batch还没有数据，但是他也会query)
+        if(curr_batchId>batchId  & progress.numInputRows>0 ){
           batchId=curr_batchId
-
           bd.unpersist()
           //在这里广播batchId时，这个batchId已经处理了
           bd=sc.broadcast(batchId+1)
           println(batchId)
-//          if(progress.numInputRows>0){
-//
-//          }
-
         }
       }
     }
-
-
   }
 }

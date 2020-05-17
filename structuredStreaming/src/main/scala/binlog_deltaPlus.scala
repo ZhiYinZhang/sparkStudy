@@ -1,4 +1,4 @@
-import org.apache.spark.sql.functions.{col, from_json, schema_of_json}
+import org.apache.spark.sql.functions.{col, from_json,schema_of_json}
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object binlog_deltaPlus {

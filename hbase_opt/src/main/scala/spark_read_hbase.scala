@@ -100,6 +100,7 @@ def get_conf_and_login():Configuration={
 
   try{
     //设置登录的用户
+
     UserGroupInformation.setConfiguration(conf)
     val ugi=UserGroupInformation.loginUserFromKeytabAndReturnUGI("zhangzy@HADOOP.COM",user_keytab)
     UserGroupInformation.setLoginUser(ugi)

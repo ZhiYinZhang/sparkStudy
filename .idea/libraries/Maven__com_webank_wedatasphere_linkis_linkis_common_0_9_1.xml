@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: com.webank.wedatasphere.linkis:linkis-common:0.9.1">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/webank/wedatasphere/Linkis/linkis-common/0.9.1/linkis-common-0.9.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/webank/wedatasphere/linkis/linkis-common/0.9.1/linkis-common-0.9.1.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/com/webank/wedatasphere/linkis/linkis-common/0.9.1/linkis-common-0.9.1-javadoc.jar!/" />
