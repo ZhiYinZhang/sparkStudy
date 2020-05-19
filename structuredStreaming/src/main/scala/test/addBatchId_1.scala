@@ -25,7 +25,7 @@ object addBatchId_1 {
 
     //初始化广播变量
 //    var bd: Broadcast[Long]=null
-    var bd: Broadcast[Long]=sc.broadcast(0)
+    var bd: Broadcast[Long]=sc.broadcast(1)
 
    spark.streams.addListener(new StreamingQueryListener {
      override def onQueryStarted(event: StreamingQueryListener.QueryStartedEvent): Unit = {
@@ -34,12 +34,13 @@ object addBatchId_1 {
      }
      override def onQueryProgress(event: StreamingQueryListener.QueryProgressEvent): Unit = {
          val progress: StreamingQueryProgress = event.progress
-
          val json: String = progress.prettyJson
          //执行查询时，这个batch已经结束了，所以我们应该广播的是下一个batch的id
-         if(progress.numInputRows>0){
-           bd = sc.broadcast(progress.batchId+1)
-         }
+
+         println(progress.batchId)
+        if(progress.numInputRows>0){
+          bd = sc.broadcast(progress.batchId+1)
+        }
 
      }
      override def onQueryTerminated(event: StreamingQueryListener.QueryTerminatedEvent): Unit = {
@@ -52,11 +53,9 @@ object addBatchId_1 {
 
     val streamDF: DataFrame = spark.readStream
       .format("rate")
-      .option("rowsPerSecond", 2)
+      .option("rowsPerSecond", 10)
       .load()
     streamDF.printSchema()
-
-
 
 
     val streamDF2=streamDF.map(x=>{
@@ -69,6 +68,7 @@ object addBatchId_1 {
       .outputMode("append")
       .format("console")
       .option("truncate",false)
+      .option("numRows",1)
       //       .trigger(Trigger.ProcessingTime(3,TimeUnit.SECONDS))
       .start()
 

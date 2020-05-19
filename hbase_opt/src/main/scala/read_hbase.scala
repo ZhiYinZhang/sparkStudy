@@ -2,6 +2,7 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.hbase.{Cell, HBaseConfiguration, KeyValue}
 import org.apache.hadoop.hbase.client.{HTable, Result, ResultScanner, Scan}
 import org.apache.hadoop.hbase.util.Bytes
+import org.apache.hadoop.hdfs.HdfsConfiguration
 import org.apache.hadoop.security.UserGroupInformation
 
 object read_hbase {
