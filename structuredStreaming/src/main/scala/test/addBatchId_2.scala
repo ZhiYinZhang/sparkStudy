@@ -49,7 +49,7 @@ object addBatchId_2 {
       if(progress !=null){
         val curr_batchId=progress.batchId
 
-        if(curr_batchId>batchId){
+        if(curr_batchId>batchId & progress.numInputRows>0){
           println(progress.prettyJson)
           batchId=curr_batchId
 

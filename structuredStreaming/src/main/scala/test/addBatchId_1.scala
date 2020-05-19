@@ -37,9 +37,9 @@ object addBatchId_1 {
 
          val json: String = progress.prettyJson
          //执行查询时，这个batch已经结束了，所以我们应该广播的是下一个batch的id
-
-         println(json)
-         bd = sc.broadcast(progress.batchId+1)
+         if(progress.numInputRows>0){
+           bd = sc.broadcast(progress.batchId+1)
+         }
 
      }
      override def onQueryTerminated(event: StreamingQueryListener.QueryTerminatedEvent): Unit = {
