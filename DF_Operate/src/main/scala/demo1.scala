@@ -33,7 +33,7 @@ object demo1 {
       import spark.implicits._
       val sc=spark.sparkContext
       sc.setLogLevel("WARN")
-
+   
 //    val path="e://test//delta//test1"
 //    val df=spark.readStream.format("delta").load(path)
 //
