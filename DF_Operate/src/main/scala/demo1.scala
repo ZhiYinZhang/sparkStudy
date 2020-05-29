@@ -10,6 +10,8 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.scheduler.{SparkListener, SparkListenerApplicationEnd, SparkListenerApplicationStart, SparkListenerStageSubmitted, StageInfo}
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql._
+import org.apache.spark.sql.catalyst.expressions.{Literal, SortOrder}
+import org.apache.spark.sql.catalyst.expressions.codegen.GenerateOrdering
 import org.apache.spark.sql.execution.QueryExecution
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.streaming.{StreamingQueryListener, StreamingQueryProgress}
@@ -18,6 +20,7 @@ import org.apache.spark.sql.util.QueryExecutionListener
 import org.apache.spark.util.LongAccumulator
 import org.apache.spark.util.sketch.BloomFilter
 import org.apache.spark.sql.functions._
+
 import scala.collection.mutable
 import scala.util.Random
 
@@ -33,7 +36,7 @@ object demo1 {
       import spark.implicits._
       val sc=spark.sparkContext
       sc.setLogLevel("WARN")
-   
+
 //    val path="e://test//delta//test1"
 //    val df=spark.readStream.format("delta").load(path)
 //
@@ -45,6 +48,9 @@ object demo1 {
 //      .start()
 //      .awaitTermination()
 //    val schema=schema_of_json("""{"type":"insert","timestamp":1576114094000,"databaseName":"aistrong","tableName":"test1","schema":"{"type":"struct","fields":[{"name":"id","type":"long","nullable":true,"metadata":{}},{"name":"a","type":"long","nullable":true,"metadata":{}},{"name":"b","type":"long","nullable":true,"metadata":{}}]}","rows":[{"id":6,"a":1,"b":1}]}""")
+
+
+
 
     val data=Seq(
       Tuple1(4),
