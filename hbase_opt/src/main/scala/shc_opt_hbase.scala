@@ -121,7 +121,9 @@ def get_catalog(table:String,cf:String,row_key:String,cols:Any)={
 
   var r=""
   for(i <- 0 until keys.size){
+    //字段名称
     val c=keys(i)
+    //字段类型
     val t=columns(c)
 
     var s=""

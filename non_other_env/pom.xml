@@ -9,95 +9,71 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>DF_Operate</artifactId>
-
+    <artifactId>non_other_env</artifactId>
     <properties>
-        <spark_version>2.4.5</spark_version>
-        <hbase_version>1.2.0</hbase_version>
-        <scala>2.11.12</scala>
-        <scala_version>2.11</scala_version>
+        <hbase_version>2.1.0</hbase_version>
     </properties>
-    <dependencies>
 
+
+    <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>${scala}</version>
+            <version>2.11.8</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.11</artifactId>
+            <version>2.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_${scala_version}</artifactId>
-            <version>${spark_version}</version>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.4.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.hbase.connectors.spark/hbase-spark -->
         <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_${scala_version}</artifactId>
-            <version>${spark_version}</version>
+            <groupId>org.apache.hbase.connectors.spark</groupId>
+            <artifactId>hbase-spark</artifactId>
+            <version>1.0.0</version>
         </dependency>
-<!--         https://mvnrepository.com/artifact/org.apache.spark/spark-sql-kafka-0-10-->
+
 <!--        <dependency>-->
-<!--            <groupId>org.apache.spark</groupId>-->
-<!--            <artifactId>spark-sql-kafka-0-10_2.12</artifactId>-->
-<!--            <version>${spark_version}</version>-->
+<!--            <groupId>com.hortonworks</groupId>-->
+<!--            <artifactId>shc-core</artifactId>-->
+<!--            <version>1.1.1-2.1-s_2.11</version>-->
 <!--        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-mllib -->
+
+
         <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-mllib_${scala_version}</artifactId>
-            <version>${spark_version}</version>
-            <!--<scope>runtime</scope>-->
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase_version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.38</version>
-        </dependency>
-
-        <dependency>
-             <groupId>org.apache.spark</groupId>
-             <artifactId>spark-hive_${scala_version}</artifactId>
-            <version>${spark_version}</version>
-         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-server -->
-        <!-- ClassNotFoundException: org.apache.hadoop.hbase.mapreduce.TableInputFormatBase-->
-        <!--与当前spark2.4.4流式处理中 包冲突，使用spark rate source时报错-->
 <!--        <dependency>-->
 <!--            <groupId>org.apache.hbase</groupId>-->
 <!--            <artifactId>hbase-server</artifactId>-->
-<!--            <version>1.2.0</version>-->
-<!--        </dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/org.apache.hive/hive-hbase-handler -->
+<!--            <version>${hbase_version}</version>-->
+<!--        </dependency><dependency>-->
+<!--        <groupId>org.apache.hbase</groupId>-->
+<!--        <artifactId>hbase-common</artifactId>-->
+<!--        <version>${hbase_version}</version>-->
+<!--    </dependency>-->
 <!--        <dependency>-->
-<!--            <groupId>org.apache.hive</groupId>-->
-<!--            <artifactId>hive-hbase-handler</artifactId>-->
-<!--            <version>1.2.0</version>-->
+<!--            <groupId>org.apache.hbase</groupId>-->
+<!--            <artifactId>hbase-protocol</artifactId>-->
+<!--            <version>${hbase_version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.json4s</groupId>-->
+<!--            <artifactId>json4s-jackson_2.11</artifactId>-->
+<!--            <version>3.2.11</version>-->
 <!--        </dependency>-->
 
 
-
-        <!-- https://mvnrepository.com/artifact/io.delta/delta-core -->
-        <dependency>
-            <groupId>io.delta</groupId>
-            <artifactId>delta-core_2.11</artifactId>
-            <version>0.5.0</version>
-        </dependency>
-
-<!--      read excel-->
-        <dependency>
-            <groupId>com.crealytics</groupId>
-            <artifactId>spark-excel_2.11</artifactId>
-            <version>0.11.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.amazon.deequ/deequ -->
-        <dependency>
-            <groupId>com.amazon.deequ</groupId>
-            <artifactId>deequ</artifactId>
-            <version>1.0.2</version>
-        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>

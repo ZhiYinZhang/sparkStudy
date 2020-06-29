@@ -4,7 +4,7 @@
 <configuration>
   <property>
     <name>hbase.rootdir</name>
-    <value>hdfs://entrobus28:8020/hbase49</value>
+    <value>hdfs://worker1:8020/hbase</value>
   </property>
   <property>
     <name>hbase.client.write.buffer</name>
@@ -42,34 +42,20 @@
     <name>hbase.fs.tmp.dir</name>
     <value>/user/${user.name}/hbase-staging</value>
   </property>
-  <property>
-    <name>hbase.client.scanner.timeout.period</name>
-    <value>60000</value>
-  </property>
-  <property>
-    <name>hbase.coprocessor.master.classes</name>
-    <value>org.apache.hadoop.hbase.security.access.AccessController</value>
-  </property>
+  <!--'hbase.client.scanner.timeout.period', originally set to '60000' (non-final), is overridden below by a safety valve-->
   <property>
     <name>hbase.coprocessor.region.classes</name>
-    <value>org.apache.hadoop.hbase.security.access.AccessController,org.apache.hadoop.hbase.security.token.TokenProvider,org.apache.hadoop.hbase.security.access.SecureBulkLoadEndpoint</value>
+    <value>org.apache.hadoop.hbase.security.access.SecureBulkLoadEndpoint</value>
   </property>
   <property>
     <name>hbase.regionserver.thrift.http</name>
-    <value>true</value>
-  </property>
-  <property>
-    <name>hbase.thrift.ssl.enabled</name>
     <value>false</value>
   </property>
   <property>
     <name>hbase.thrift.support.proxyuser</name>
-    <value>true</value>
+    <value>false</value>
   </property>
-  <property>
-    <name>hbase.rpc.timeout</name>
-    <value>60000</value>
-  </property>
+  <!--'hbase.rpc.timeout', originally set to '60000' (non-final), is overridden below by a safety valve-->
   <property>
     <name>hbase.snapshot.enabled</name>
     <value>true</value>
@@ -88,7 +74,7 @@
   </property>
   <property>
     <name>hbase.security.authentication</name>
-    <value>kerberos</value>
+    <value>simple</value>
   </property>
   <property>
     <name>hbase.rpc.protection</name>
@@ -108,22 +94,34 @@
   </property>
   <property>
     <name>hbase.zookeeper.quorum</name>
-    <value>entrobus12,entrobus28,entrobus32</value>
+    <value>worker2,worker3,worker1</value>
   </property>
   <property>
     <name>hbase.zookeeper.property.clientPort</name>
     <value>2181</value>
   </property>
   <property>
-    <name>hbase.master.kerberos.principal</name>
-    <value>hbase/_HOST@HADOOP.COM</value>
-  </property>
-  <property>
-    <name>hbase.regionserver.kerberos.principal</name>
-    <value>hbase/_HOST@HADOOP.COM</value>
-  </property>
-  <property>
     <name>hbase.rest.ssl.enabled</name>
     <value>false</value>
+  </property>
+  <property>
+    <name>phoenix.query.timeoutMs</name>
+    <value>1200000</value>
+  </property>
+  <property>
+    <name>phoenix.query.keepAliveMs</name>
+    <value>1200000</value>
+  </property>
+  <property>
+    <name>hbase.rpc.timeout</name>
+    <value>1200000</value>
+  </property>
+  <property>
+    <name>hbase.client.operation.timeout</name>
+    <value>1200000</value>
+  </property>
+  <property>
+    <name>hbase.client.scanner.timeout.period</name>
+    <value>1200000</value>
   </property>
 </configuration>

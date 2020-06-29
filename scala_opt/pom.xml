@@ -77,7 +77,6 @@
             <artifactId>linkis-ujes-client</artifactId>
             <version>0.9.1</version>
         </dependency>
-
     </dependencies>
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>

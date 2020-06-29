@@ -10,7 +10,7 @@
     <properties>
         <scala_version>2.11.8</scala_version>
         <spark_version>2.4.4</spark_version>
-        <hbase_version>1.2.0</hbase_version>
+        <hbase_version>1.4.0</hbase_version>
     </properties>
     <modelVersion>4.0.0</modelVersion>
 
@@ -33,27 +33,32 @@
         <version>${spark_version}</version>
     </dependency>
 
+    <dependency>
+        <groupId>org.apache.hbase</groupId>
+        <artifactId>hbase-client</artifactId>
+        <version>${hbase_version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hbase</groupId>
+        <artifactId>hbase-common</artifactId>
+        <version>${hbase_version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hbase</groupId>
+        <artifactId>hbase-server</artifactId>
+        <version>${hbase_version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hbase</groupId>
+        <artifactId>hbase-protocol</artifactId>
+        <version>${hbase_version}</version>
+    </dependency>
+        <!--hbase和spark使用了json4s不同版本，可能hbase版本太低，冲突了，手动导入-->
         <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-client</artifactId>
-            <version>${hbase_version}</version>
+            <groupId>org.json4s</groupId>
+            <artifactId>json4s-jackson_2.11</artifactId>
+            <version>3.2.11</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-common</artifactId>
-            <version>${hbase_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-server</artifactId>
-            <version>${hbase_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-protocol</artifactId>
-            <version>${hbase_version}</version>
-        </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/com.hortonworks/shc-core -->
         <dependency>
@@ -63,28 +68,27 @@
         </dependency>
 
 
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-core &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.phoenix</groupId>-->
+<!--            <artifactId>phoenix-core</artifactId>-->
+<!--            <version>4.14.0-HBase-1.2</version>-->
+<!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-core -->
-        <dependency>
-            <groupId>org.apache.phoenix</groupId>
-            <artifactId>phoenix-core</artifactId>
-            <version>4.14.0-HBase-1.2</version>
-        </dependency>
-
-        <!--         https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-spark-->
-        <dependency>
-            <groupId>org.apache.phoenix</groupId>
-            <artifactId>phoenix-spark</artifactId>
-            <version>4.14.0-HBase-1.2</version>
-<!--            <scope>provided</scope>-->
-        </dependency>
+<!--        &lt;!&ndash;         https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-spark&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.phoenix</groupId>-->
+<!--            <artifactId>phoenix-spark</artifactId>-->
+<!--            <version>4.14.0-HBase-1.2</version>-->
+<!--&lt;!&ndash;            <scope>provided</scope>&ndash;&gt;-->
+<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
-        <dependency>
-            <groupId>com.lmax</groupId>
-            <artifactId>disruptor</artifactId>
-            <version>3.4.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.lmax</groupId>-->
+<!--            <artifactId>disruptor</artifactId>-->
+<!--            <version>3.4.1</version>-->
+<!--        </dependency>-->
     </dependencies>
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
