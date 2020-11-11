@@ -1,2 +1,2 @@
 # sparkStudy
-study spark
+study spark with scala
