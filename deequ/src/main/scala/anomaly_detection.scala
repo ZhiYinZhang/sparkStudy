@@ -41,6 +41,7 @@ object anomaly_detection {
 //      .run()
 
 
+
     //-----今天的数据
     /*
     今天的数据有5行，所以数据大小增加了一倍以上，我们的异常检查应该抓住这
@@ -90,6 +91,7 @@ object anomaly_detection {
       )
       .run()
 
+
     if(verificationResult.status!=Success){
       metricsRepository.load()
         .forAnalyzers(Seq(Size()))
@@ -98,7 +100,4 @@ object anomaly_detection {
     }
 
   }
-
-
-
 }
