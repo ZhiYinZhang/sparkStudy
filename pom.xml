@@ -18,6 +18,7 @@
         <module>DStream</module>
         <module>scala_opt</module>
         <module>non_other_env</module>
+        <module>deequ</module>
     </modules>
 
 
