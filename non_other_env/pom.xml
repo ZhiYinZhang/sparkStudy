@@ -11,7 +11,9 @@
 
     <artifactId>non_other_env</artifactId>
     <properties>
-        <hbase_version>2.1.0</hbase_version>
+        <spark.version>2.4.5</spark.version>
+        <scala.version>2.11.12</scala.version>
+        <scala.binary.version>2.11</scala.binary.version>
     </properties>
 
 
@@ -19,65 +21,30 @@
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.11.8</version>
+            <version>${scala.version}</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>2.4.0</version>
+            <artifactId>spark-core_${scala.binary.version}</artifactId>
+            <version>${spark.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
-            <version>2.4.0</version>
+            <artifactId>spark-sql_${scala.binary.version}</artifactId>
+            <version>${spark.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.hbase.connectors.spark/hbase-spark -->
-        <dependency>
-            <groupId>org.apache.hbase.connectors.spark</groupId>
-            <artifactId>hbase-spark</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.hortonworks</groupId>-->
-<!--            <artifactId>shc-core</artifactId>-->
-<!--            <version>1.1.1-2.1-s_2.11</version>-->
-<!--        </dependency>-->
-
 
         <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-client</artifactId>
-            <version>${hbase_version}</version>
+            <groupId>com.amazon.deequ</groupId>
+            <artifactId>deequ</artifactId>
+            <version>1.0.2</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.apache.hbase</groupId>-->
-<!--            <artifactId>hbase-server</artifactId>-->
-<!--            <version>${hbase_version}</version>-->
-<!--        </dependency><dependency>-->
-<!--        <groupId>org.apache.hbase</groupId>-->
-<!--        <artifactId>hbase-common</artifactId>-->
-<!--        <version>${hbase_version}</version>-->
-<!--    </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.hbase</groupId>-->
-<!--            <artifactId>hbase-protocol</artifactId>-->
-<!--            <version>${hbase_version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.json4s</groupId>-->
-<!--            <artifactId>json4s-jackson_2.11</artifactId>-->
-<!--            <version>3.2.11</version>-->
-<!--        </dependency>-->
-
-
     </dependencies>
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
-        <testSourceDirectory>src/test/scala</testSourceDirectory>
+<!--        <testSourceDirectory>src/test/scala</testSourceDirectory>-->
         <plugins>
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
@@ -128,6 +95,31 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--scala代码风格的检测，配合scalastyle-config.xml，这个文件可以拷贝github spark项目下的；-->
+<!--            <plugin>-->
+<!--                <groupId>org.scalastyle</groupId>-->
+<!--                <artifactId>scalastyle-maven-plugin</artifactId>-->
+<!--                <version>1.0.0</version>-->
+<!--                <configuration>-->
+<!--                    <verbose>false</verbose>-->
+<!--                    <failOnViolation>true</failOnViolation>-->
+<!--                    <includeTestSourceDirectory>false</includeTestSourceDirectory>-->
+<!--                    <failOnWarning>false</failOnWarning>-->
+<!--                    <sourceDirectory>${basedir}/src/main/scala</sourceDirectory>-->
+<!--                    <testSourceDirectory>${basedir}/src/test/scala</testSourceDirectory>-->
+<!--                    <configLocation>scalastyle-config.xml</configLocation>-->
+<!--                    <outputFile>${basedir}/target/scalastyle-output.xml</outputFile>-->
+<!--                    <inputEncoding>UTF-8</inputEncoding>-->
+<!--                    <outputEncoding>UTF-8</outputEncoding>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

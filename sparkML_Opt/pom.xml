@@ -11,29 +11,32 @@
 
     <artifactId>sparkML_Opt</artifactId>
     <properties>
-        <spark_version>2.4.4</spark_version>
+        <spark.version>2.4.4</spark.version>
+        <scala.version>2.12.11</scala.version>
+        <scala.binary.version>2.12</scala.binary.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.11.8</version>
+            <version>${scala.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${scala.binary.version}</artifactId>
+            <version>${spark.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>${spark_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
-            <version>${spark_version}</version>
+            <artifactId>spark-sql_${scala.binary.version}</artifactId>
+            <version>${spark.version}</version>
         </dependency>
 
         <dependency>
         <groupId>org.apache.spark</groupId>
-        <artifactId>spark-mllib_2.11</artifactId>
-            <version>${spark_version}</version>
+        <artifactId>spark-mllib_${scala.binary.version}</artifactId>
+            <version>${spark.version}</version>
         <!--<scope>runtime</scope>-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.johnsnowlabs.nlp/spark-nlp -->
@@ -44,18 +47,18 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/Azure/mmlspark -->
-        <dependency>
-            <groupId>Azure</groupId>
-            <artifactId>mmlspark</artifactId>
-            <version>0.15</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>Azure</groupId>-->
+<!--            <artifactId>mmlspark</artifactId>-->
+<!--            <version>0.15</version>-->
+<!--        </dependency>-->
 
 
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
-        <testSourceDirectory>src/test/scala</testSourceDirectory>
+<!--        <testSourceDirectory>src/test/scala</testSourceDirectory>-->
         <plugins>
             <plugin>
                 <groupId>net.alchim31.maven</groupId>

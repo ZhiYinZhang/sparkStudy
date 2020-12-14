@@ -3,44 +3,14 @@ import java.io._
 import java.util.Scanner
 
 import scala.io._
+import scala.util.control.Breaks
 object io_opt {
   def main(args: Array[String]): Unit = {
-    val path0="E:\\test\\rate\\batchId.txt"
-    val path1="e://test//checkpoint//URL1.txt"
+     val path="e://test//question2//test.txt"
+     readFile1(path)
 
 
-    val base="e://dataset//question//question2//"
-    val file = base+"words.txt"
-    val hash_file = base+"hash"
 
-    val br = new BufferedReader(new FileReader(file))
-    var bw:BufferedWriter = null
-    //定义缓冲区大小
-    var records=new Array[Char](18*1000)
-    var strs:Array[String]=null
-    //每次读取的字符长度
-    var len:Int=0
-    while(len != -1){
-      len=br.read(records)
-      strs=new String(records.slice(0,len)).split("\n")
-      var num=0
-      for(i<-strs) {
-              var hashId:Int=i.hashCode%5000
-              hashId=hashId.abs
-              bw=new BufferedWriter(new FileWriter(base+s"test//$hashId.txt",true))
-
-              bw.write(i+"\n")
-              bw.flush()
-        println(s"$num/${len/18}" + "   " + i)
-        num += 1
-      }
-
-      println("----------------------------------")
-//      Thread.sleep(1000)
-    }
-
-    br.close()
-    bw.close()
   }
 
   def readFile0(path:String)={
@@ -68,16 +38,33 @@ object io_opt {
       */
     val fis = new FileInputStream(path)
     val br = new BufferedReader(new InputStreamReader(fis,"utf-8"))
-    println(br.readLine())
+//    println(br.readLine())
 
-//    var record:String=null
-//    while((record=br.readLine())!=null){
-//      println(record)
-//    }
+    var record:String=null
+
+    var num=0
+    while((record=br.readLine())!=null){
+      num+=1
+      println(num,record)
+      if(record==null){
+        println("it is null")
+      }
+      if(num==10){
+         Breaks.break()
+        
+      }
+    }
 
     br.close()
   }
   def readFile2()={
+    /**
+     * 读取文件，取文件中的每一行数据的hash值，然后对特定的数取余得到一个id，将这一行数据写到对应文件中，文件以id命名。
+     * 1.将数据读到字符缓冲区中
+     * 2.按换行符切分，得到字符串数组
+     * 3.获取每一行的数据的hash值，对特定的数取余，得到一个id
+     * 4.将这一行数据追加到以id命名的文件中（这个文件会自动创建）
+     */
     val base="e://dataset//question//question2//"
     val file = base+"words.txt"
     val hash_file = base+"hash"

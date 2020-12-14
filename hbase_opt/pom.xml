@@ -8,9 +8,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <properties>
-        <scala_version>2.11.8</scala_version>
+        <scala_version>2.12.11</scala_version>
         <spark_version>2.4.4</spark_version>
-        <hbase_version>1.4.0</hbase_version>
+        <hbase_version>1.4.2</hbase_version>
     </properties>
     <modelVersion>4.0.0</modelVersion>
 
@@ -92,7 +92,7 @@
     </dependencies>
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
-        <testSourceDirectory>src/test/scala</testSourceDirectory>
+<!--        <testSourceDirectory>src/test/scala</testSourceDirectory>-->
         <plugins>
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
