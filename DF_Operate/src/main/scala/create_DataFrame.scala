@@ -37,11 +37,13 @@ object create_DataFrame {
 
   def create_1(spark: SparkSession): DataFrame = {
     //一列，
-    val df = spark.createDataFrame(Seq(
+    val df = spark.createDataFrame(
+      Seq(
       Array("a", "b", "c"),
       Array("d", "e", "f"),
       Array("g", "h", "i")
-    ).map(Tuple1.apply(_))).toDF("text")
+      ).map(Tuple1.apply(_))
+    ).toDF("text")
     df
   }
 

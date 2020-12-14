@@ -1,40 +1,18 @@
 
 
-import java.io.{BufferedInputStream, BufferedOutputStream, FileInputStream, FileOutputStream}
-import java.lang
-import java.time.{Clock, Instant, ZoneId}
-import java.util.{Date, Properties}
-
-import org.apache.spark.internal.Logging
-import org.apache.spark.rdd.RDD
-import org.apache.spark.scheduler.{SparkListener, SparkListenerApplicationEnd, SparkListenerApplicationStart, SparkListenerStageSubmitted, StageInfo}
-import org.apache.spark.sql.functions._
 import org.apache.spark.sql._
-import org.apache.spark.sql.catalyst.expressions.{Literal, SortOrder}
-import org.apache.spark.sql.catalyst.expressions.codegen.GenerateOrdering
-import org.apache.spark.sql.execution.QueryExecution
-import org.apache.spark.sql.expressions.Window
-import org.apache.spark.sql.streaming.{StreamingQueryListener, StreamingQueryProgress}
-import org.apache.spark.sql.types._
-import org.apache.spark.sql.util.QueryExecutionListener
-import org.apache.spark.util.LongAccumulator
-import org.apache.spark.util.sketch.BloomFilter
-import org.apache.spark.sql.functions._
 
-import scala.collection.mutable
-import scala.util.Random
-
-//case class SimpleData(name:String,value:Double)
+// case class SimpleData(name:String,value:Double)
 
 
 object demo1 {
   def main(args: Array[String]): Unit = {
-      val spark=SparkSession.builder()
+      val spark = SparkSession.builder()
       .appName("test")
-      .master("local[*]")
+      .master("local[2]")
+//        .config("spark.sql.crossJoin.enabled","true")
       .getOrCreate()
-      import spark.implicits._
-      val sc=spark.sparkContext
+      val sc = spark.sparkContext
       sc.setLogLevel("WARN")
 
 //    val path="e://test//delta//test1"
@@ -47,12 +25,18 @@ object demo1 {
 //    df1.writeStream.format("console").outputMode("append")
 //      .start()
 //      .awaitTermination()
-//    val schema=schema_of_json("""{"type":"insert","timestamp":1576114094000,"databaseName":"aistrong","tableName":"test1","schema":"{"type":"struct","fields":[{"name":"id","type":"long","nullable":true,"metadata":{}},{"name":"a","type":"long","nullable":true,"metadata":{}},{"name":"b","type":"long","nullable":true,"metadata":{}}]}","rows":[{"id":6,"a":1,"b":1}]}""")
+//    val schema=schema_of_json("""{"type":"insert",
+    //    "timestamp":1576114094000,"databaseName":"aistrong",
+    //    "tableName":"test1","schema":"{"type":"struct","fields":
+    //    [{"name":"id","type":"long","nullable":true,"metadata":{}},
+    //    {"name":"a","type":"long","nullable":true,"metadata":{}},
+    //    {"name":"b","type":"long","nullable":true,"metadata":{}}]}",
+    //    "rows":[{"id":6,"a":1,"b":1}]}""")
 
 
 
 
-    val data=Seq(
+    val data = Seq(
       Tuple1(4),
       Tuple1(4),
       Tuple1(3),
@@ -64,11 +48,10 @@ object demo1 {
     )
 //    val df: Dataset[lang.Long] = spark.range(100)
      val df=spark.createDataFrame(data).toDF("id")
+//    df.join(df,List("id"),"cross").show()
+      df.crossJoin(df).show()
 
-    spark.sql("")
-    val df1=df.repartitionByRange(2,$"id")
-
-    //spark.sql.shuffle.partitions
+    // spark.sql.shuffle.partitions
 //    val df1=df.repartition($"id")
 
 //    df1.withColumn("pid",spark_partition_id())
@@ -76,7 +59,7 @@ object demo1 {
 
 
 //    val df1=df.rdd.mapPartitionsWithIndex((id,iter)=>{
-////      iter.toList.foreach(println)
+//     iter.toList.foreach(println)
 //      Iterator((id,iter.toList.size))
 //  }).toDF("pid","psize")
 //
@@ -84,18 +67,18 @@ object demo1 {
   }
 
 
-  def merge_sort(l:List[Double]):List[Double]={
+  def merge_sort(l: List[Double]): List[Double] = {
 
-    val length=l.length
-    if(length<=1){
+    val length = l.length
+    if(length<=1) {
       return l
     }
-    val middle=(length/2).toInt
+    val middle = (length/2).toInt
 
-    val left=merge_sort(l.slice(0,middle))
-    val right=merge_sort(l.slice(middle,length))
+    val left = merge_sort(l.slice(0, middle))
+    val right = merge_sort(l.slice(middle, length))
 
-    return merge(left,right)
+    return merge(left, right)
   }
   def merge(left:List[Double],right:List[Double]):List[Double]={
     var result=List[Double]()

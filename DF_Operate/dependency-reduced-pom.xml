@@ -9,7 +9,6 @@
   <artifactId>DF_Operate</artifactId>
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
-    <testSourceDirectory>src/test/scala</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>net.alchim31.maven</groupId>
@@ -61,5 +60,11 @@
       </plugin>
     </plugins>
   </build>
+  <properties>
+    <scala>2.12.11</scala>
+    <spark_version>2.4.5</spark_version>
+    <scala_version>2.12</scala_version>
+    <hbase_version>1.2.0</hbase_version>
+  </properties>
 </project>
 
