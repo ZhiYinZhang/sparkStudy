@@ -12,7 +12,7 @@
     <artifactId>DF_Operate</artifactId>
 
     <properties>
-        <spark.version>2.4.5</spark.version>
+        <spark.version>2.4.7</spark.version>
         <hbase_version>1.2.0</hbase_version>
         <scala.version>2.11.12</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
@@ -57,7 +57,7 @@
         <!--      read excel-->
         <dependency>
             <groupId>com.crealytics</groupId>
-            <artifactId>spark-excel_2.11</artifactId>
+            <artifactId>spark-excel_${scala.binary.version}</artifactId>
             <version>0.11.1</version>
         </dependency>
 
@@ -94,7 +94,7 @@
         <!-- https://mvnrepository.com/artifact/io.delta/delta-core -->
         <dependency>
             <groupId>io.delta</groupId>
-            <artifactId>delta-core_2.11</artifactId>
+            <artifactId>delta-core_${scala.binary.version}</artifactId>
             <version>0.5.0</version>
         </dependency>
 

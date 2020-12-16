@@ -12,8 +12,8 @@
     <artifactId>spark_newFeature</artifactId>
     <properties>
         <spark.version>2.4.5</spark.version>
-        <scala.version>2.12.11</scala.version>
-        <scala.binary.version>2.12</scala.binary.version>
+        <scala.version>2.11.12</scala.version>
+        <scala.binary.version>2.11</scala.binary.version>
     </properties>
     <dependencies>
         <dependency>

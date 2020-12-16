@@ -11,9 +11,9 @@
 
     <artifactId>sparkML_Opt</artifactId>
     <properties>
-        <spark.version>2.4.4</spark.version>
-        <scala.version>2.12.11</scala.version>
-        <scala.binary.version>2.12</scala.binary.version>
+        <spark.version>2.4.5</spark.version>
+        <scala.version>2.11.12</scala.version>
+        <scala.binary.version>2.11</scala.binary.version>
     </properties>
     <dependencies>
         <dependency>
@@ -42,7 +42,7 @@
         <!-- https://mvnrepository.com/artifact/com.johnsnowlabs.nlp/spark-nlp -->
         <dependency>
             <groupId>com.johnsnowlabs.nlp</groupId>
-            <artifactId>spark-nlp_2.11</artifactId>
+            <artifactId>spark-nlp_${scala.binary.version}</artifactId>
             <version>1.7.3</version>
         </dependency>
 

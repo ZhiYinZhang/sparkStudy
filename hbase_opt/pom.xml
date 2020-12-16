@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <properties>
-        <scala_version>2.12.11</scala_version>
+        <scala_version>2.11.12</scala_version>
         <spark_version>2.4.4</spark_version>
         <hbase_version>1.4.2</hbase_version>
     </properties>
@@ -66,7 +66,6 @@
             <artifactId>shc-core</artifactId>
             <version>1.1.1-2.1-s_2.11</version>
         </dependency>
-
 
 <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.phoenix/phoenix-core &ndash;&gt;-->
 <!--        <dependency>-->

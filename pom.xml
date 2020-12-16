@@ -13,7 +13,6 @@
         <module>DF_Operate</module>
         <module>spark_newFeature</module>
         <module>sparkML_Opt</module>
-        <module>hbase_Opt</module>
         <module>hbase_opt</module>
         <module>DStream</module>
         <module>scala_opt</module>
@@ -21,5 +20,31 @@
         <module>deequ</module>
     </modules>
 
-
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <layout>default</layout>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>nexus-163</id>
+            <name>Nexus 163</name>
+            <layout>default</layout>
+            <url>http://mirrors.163.com/maven/repository/maven-public/</url>
+        </repository>
+        <!--为了下载hbase_opt里面的shc-core-->
+        <repository>
+            <id>hortonworks</id>
+            <name>hortonworks maven</name>
+            <layout>default</layout>
+            <url>https://repo.hortonworks.com/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>
 </project>
