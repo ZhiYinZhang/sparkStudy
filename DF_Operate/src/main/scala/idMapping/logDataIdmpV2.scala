@@ -4,7 +4,7 @@ import org.apache.commons.lang.StringUtils
 import org.apache.spark.graphx.{Edge, Graph, VertexId}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{array, col}
+import org.apache.spark.sql.functions.{array, array_intersect, col, collect_set,size}
 /**
  * 三类埋点日志的id映射计算程序
  * 考虑滚动整合
@@ -40,7 +40,7 @@ object logDataIdmpV2 {
     //2.构造边rdd
     /**
      *过滤弱关联边：即过滤掉出现次数比较少的边，如其他的人使用我的手机登陆了账号，那么应该过滤掉他,这个阈值就是经验了
-     *在构造边的时候应该两两连接，然后再去统计每个边的数量，过滤掉数量少的
+     *所以在构造边的时候应该两两连接，然后再去统计每个边的数量，过滤掉数量少的
      */
     val edges=allTag.rdd.flatMap(row=>{
       //过滤掉空的数据
@@ -56,31 +56,37 @@ object logDataIdmpV2 {
 
     //3.将上一日的idmapping映射字典，解析成点，边集合
     val lastDayIdmp=spark.read.parquet("e://data//idMapping_res//20201215")
-    //构造上一日的点集合
+    //3.1构造上一日的点集合
     val lastDayVertices=lastDayIdmp.rdd.map(r=>{
       //第一个就是点，数据为空
       (r.getLong(0),"")
     })
-    //构造上一日的边集合
+    //3.2构造上一日的边集合
     val lastDayEdges=lastDayIdmp.rdd.map(r=>{
-
       Edge(r.getAs[VertexId](0),r.getAs[VertexId](1),"")
     })
 
 
 
 
-    //3.构造图
-    val graph=Graph(vertices,filter_edges)
-    val graph2=graph.connectedComponents()
+    //4.将当日的点集合union上日的点集合，当日的边集合union上日的边集合，构造图
+    val graph=Graph(vertices.union(lastDayVertices),filter_edges.union(lastDayEdges))
+    val res_vertices=graph.connectedComponents().vertices
+
+    //5.将结果与上日的映射字典做对比，调整guid
+    //以guid分组，将id放到一个set集合中，然后join，交集不为空的join在一起；能join在一起就说明这个用户昨天已有一个guid了，就用昨天的guid
+    val guid_set=res_vertices.toDF("id","guid")
+      .groupBy("guid")
+      .agg(collect_set($"id").alias("id_set"))
+
+    val guid_last_set=lastDayIdmp.groupBy("guid").agg(collect_set($"tag_hashcode").alias("id_last_set"))
+    //交集不为空的join在一起
+    val res_join=guid_set.join(guid_last_set,size(array_intersect($"id_set",$"id_last_set"))>0)
+
+    res_join.show()
 
 
-    val vertices1=graph2.vertices
 
-    //保存结果
-    vertices1.toDF("tag_hashcode","guid")
-      .write
-      .parquet("e:://data//idMapping_res//20201215")
 
   }
 }
