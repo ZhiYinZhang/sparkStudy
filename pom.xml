@@ -33,6 +33,12 @@
             <layout>default</layout>
             <url>http://mirrors.163.com/maven/repository/maven-public/</url>
         </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
         <!--为了下载hbase_opt里面的shc-core-->
         <repository>
             <id>hortonworks</id>
@@ -40,12 +46,7 @@
             <layout>default</layout>
             <url>https://repo.hortonworks.com/content/repositories/releases/</url>
         </repository>
-        <repository>
-            <id>central</id>
-            <name>Maven Repository Switchboard</name>
-            <layout>default</layout>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
+
     </repositories>
     <build>
 

@@ -1,102 +1,38 @@
-
-
 import org.apache.spark.sql._
-
+import org.apache.spark.sql.functions._
 // case class SimpleData(name:String,value:Double)
 
 
 object demo1 {
   def main(args: Array[String]): Unit = {
-      val spark = SparkSession.builder()
-      .appName("test")
+    val spark = SparkSession.builder()
+      .appName("es")
       .master("local[2]")
-//        .config("spark.sql.crossJoin.enabled","true")
+      .config("es.nodes","192.168.35.164")
+      .config("es.port","9200")
+      .config("es.nodes.wan.only","true")
       .getOrCreate()
-      val sc = spark.sparkContext
-      sc.setLogLevel("WARN")
+    import spark.implicits._
+    val sc = spark.sparkContext
+    sc.setLogLevel("WARN")
 
-//    val path="e://test//delta//test1"
-//    val df=spark.readStream.format("delta").load(path)
-//
-//    val window=Window.partitionBy("id").orderBy("date")
-//
-//    val df1=df.withColumn("value1",lead("value",1).over(window))
-//
-//    df1.writeStream.format("console").outputMode("append")
-//      .start()
-//      .awaitTermination()
-//    val schema=schema_of_json("""{"type":"insert",
-    //    "timestamp":1576114094000,"databaseName":"aistrong",
-    //    "tableName":"test1","schema":"{"type":"struct","fields":
-    //    [{"name":"id","type":"long","nullable":true,"metadata":{}},
-    //    {"name":"a","type":"long","nullable":true,"metadata":{}},
-    //    {"name":"b","type":"long","nullable":true,"metadata":{}}]}",
-    //    "rows":[{"id":6,"a":1,"b":1}]}""")
+    val test1=spark.readStream.format("rate").option("rowsPerSecond",10000).load()
+
+    val res=test1.withColumn("timestamp",date_format($"timestamp","yyyy-MM-dd HH:mm:ss.SSS"))
+      .withColumn("dt",date_format($"timestamp","yyyyMMdd"))
+      .withColumn("message",$"value".cast("string"))
 
 
 
+    val query=res.writeStream.format("es")
+      .option("checkpointLocation","e://data//checkpoint")
+      .outputMode("append")
+      .format("es")
+      .start("systemlog")
 
-    val data = Seq(
-      Tuple1(4),
-      Tuple1(4),
-      Tuple1(3),
-      Tuple1(2),
-      Tuple1(2),
-      Tuple1(1),
-      Tuple1(1),
-      Tuple1(1)
-    )
-//    val df: Dataset[lang.Long] = spark.range(100)
-     val df=spark.createDataFrame(data).toDF("id")
-//    df.join(df,List("id"),"cross").show()
-      df.crossJoin(df).show()
-
-    // spark.sql.shuffle.partitions
-//    val df1=df.repartition($"id")
-
-//    df1.withColumn("pid",spark_partition_id())
-//      .show(100)
+    query.awaitTermination()
+//    test1.writeStream.format("console").start().awaitTermination()
 
 
-//    val df1=df.rdd.mapPartitionsWithIndex((id,iter)=>{
-//     iter.toList.foreach(println)
-//      Iterator((id,iter.toList.size))
-//  }).toDF("pid","psize")
-//
-//   df1.show()
-  }
-
-
-  def merge_sort(l: List[Double]): List[Double] = {
-
-    val length = l.length
-    if(length<=1) {
-      return l
-    }
-    val middle = (length/2).toInt
-
-    val left = merge_sort(l.slice(0, middle))
-    val right = merge_sort(l.slice(middle, length))
-
-    return merge(left, right)
-  }
-  def merge(left:List[Double],right:List[Double]):List[Double]={
-    var result=List[Double]()
-    var i=0
-    var j=0
-    while(i<left.length & j<right.length){
-      if(left(i)<right(j)){
-        result=result.:+(left(i))
-        i+=1
-      }else{
-        result=result.:+(right(j))
-        j+=1
-      }
-    }
-    //两个长度不同的list,在跳出while之后,某一个list里面还有值
-    result=result.++(left.slice(i,left.length))
-    result=result.++(right.slice(j,left.length))
-
-    return result
   }
 }
